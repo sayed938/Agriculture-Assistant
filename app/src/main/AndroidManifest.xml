@@ -16,7 +16,7 @@
         android:theme="@style/Theme.AgriclutureAssistant"
         tools:targetApi="31">
         <activity
-            android:name=".EditData"
+            android:name=".ui.features_activities.EditData"
             android:exported="false" />
         <activity
             android:name=".ui.features_activities.AddPost"
