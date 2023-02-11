@@ -11,11 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.agriclutureassistant.R;
 import com.example.agriclutureassistant.pojo.HomeFeaturesModel;
 import com.example.agriclutureassistant.ui.adapters.HomeFeaturesAdapter;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -26,6 +29,7 @@ public class HomeFeatures extends Fragment {
     private RecyclerView featuresRecycler;
     private ArrayList<HomeFeaturesModel> list = new ArrayList<>();
     private HomeFeaturesAdapter adapter;
+    private TextView date;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,7 @@ public class HomeFeatures extends Fragment {
         featuresRecycler = view.findViewById(R.id.recyclerView);
         featuresRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         featuresRecycler.setHasFixedSize(true);
+        date=view.findViewById(R.id.date_txt);
 
         return view;
     }
@@ -49,7 +54,7 @@ public class HomeFeatures extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        date.setText(localDate());
         list = fillFeatures();
         adapter = new HomeFeaturesAdapter(list,getContext());
         featuresRecycler.setAdapter(adapter);
@@ -65,5 +70,14 @@ public class HomeFeatures extends Fragment {
         HomeFeaturesModel place3 = new HomeFeaturesModel("https://media.istockphoto.com/id/1009934102/photo/were-all-responsible-for-creating-a-better-tomorrow.jpg?s=612x612&w=0&k=20&c=ap3hWDhcFsroOWj41CRaaMKDzEofQ9FcYypWDobVwis=","Social Media");
         list.addAll(Arrays.asList(new HomeFeaturesModel[]{place1,place2,place3}));
         return list;
+    }
+    public String localDate(){
+        String date="";
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            LocalDate localDate=LocalDate.now();
+            DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-MM-yyyy");
+           date=  localDate.format(formatter);
+        }
+        return date;
     }
 }
