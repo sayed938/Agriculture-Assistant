@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/home_menu"
+    android:id="@+id/nav_graph">
+<fragment
+    android:id="@+id/weather_menu"
+    android:name="com.example.agriclutureassistant.ui.fragments.Weather"
+    android:label="Weather"
+    tools:layout="@layout/fragment_weather"
+    />
+    <fragment
+        android:id="@+id/hard_menu"
+        android:label="Soil Moisture"
+        android:name="com.example.agriclutureassistant.ui.fragments.SoilMoisture"
+        tools:layout="@layout/fragment_soil_moisture"
+        />
+    <fragment
+        android:id="@+id/home_menu"
+        android:name="com.example.agriclutureassistant.ui.fragments.HomeFeatures"
+        android:label="fragment_home_features"
+        tools:layout="@layout/fragment_home_features" />
+    <fragment
+        android:id="@+id/setting_menu"
+        android:name="com.example.agriclutureassistant.ui.fragments.Settings"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+
+</navigation>

@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Agricluture Assistant</string>
+    <string name="forgetpass">Forget Password?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="temperature_degree" translatable="false">24°c</string>
+    <string name="date" translatable="false">Date</string>
+    <string name="location" translatable="false">Location</string>
+    <string name="user_name_home" translatable="false">User Name</string>
+    <string name="good_morning">Good Morning</string>
+    <string name="all_features">All Features</string>
+    <string name="profile">Profile</string>
+    <string name="username_setting">username</string>
+    <string name="fixed_email" translatable="false">Email</string>
+    <string name="email" translatable="false">Settings Email</string>
+    <string name="fixed_phone">phone</string>
+    <string name="phone" translatable="false">Settings Phone</string>
+    <string name="fixed_password">Password</string>
+    <string name="password" translatable="false">Settings Password</string>
+    <string name="you_should_take_a_photo_to_discover_the_plant_disease" translatable="false">You should take a photo to discover the plant disease</string>
+    <string name="you_should_take_a_photo_to_discover_the_plant_name" translatable="false">You should take a photo to discover the plant name</string>
+
+</resources>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background2"
+    tools:context=".ui.fragments.Sign_in">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="20dp"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.461">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Sign in"
+            android:fontFamily="@font/signfont"
+            android:layout_marginBottom="50dp"
+            android:textColor="@color/primarytext"
+            android:textSize="35sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="60dp"
+            android:text="Hello!"
+            android:textColor="@color/primarytext"
+            android:textSize="22sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="90dp"
+            android:text="Welcome back"
+            android:textColor="@color/primarytext"
+            android:textSize="18sp" />
+
+        <EditText
+            style="@style/edit_text_sign"
+            android:inputType="numberPassword"
+            android:layout_marginTop="20dp"
+            android:hint="Password"
+            />
+
+        <EditText
+            style="@style/edit_text_sign"
+            android:layout_marginBottom="45dp"
+            android:inputType="textPersonName"
+            android:hint="Email"
+            />
+
+        <Button
+            android:id="@+id/signin"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/custombutton"
+            android:ems="10"
+            android:text="Sign in"
+            android:textAllCaps="false"
+            app:backgroundTint="@color/basiccolor2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="@string/forgetpass"
+            android:layout_gravity="center"
+            android:layout_marginTop="118dp"
+            android:textColor="@color/primarytext"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Haven’t any account?"
+            android:textColor="@color/haventaccount"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="40dp"
+
+            />
+        <TextView
+            android:id="@+id/back_signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create account"
+            android:textColor="@color/black"
+            android:layout_gravity="bottom"
+            android:textAllCaps="false"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="195dp"/>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
