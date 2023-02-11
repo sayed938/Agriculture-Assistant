@@ -1,8 +1,10 @@
-package com.example.agriclutureassistant;
+package com.example.agriclutureassistant.ui.features_activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.agriclutureassistant.R;
 
 public class EditData extends AppCompatActivity {
 

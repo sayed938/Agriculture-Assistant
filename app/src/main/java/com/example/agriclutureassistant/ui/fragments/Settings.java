@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.agriclutureassistant.EditData;
+import com.example.agriclutureassistant.ui.features_activities.EditData;
 import com.example.agriclutureassistant.R;
 
 
