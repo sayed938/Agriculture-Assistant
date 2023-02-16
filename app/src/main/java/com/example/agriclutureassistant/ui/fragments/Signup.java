@@ -38,6 +38,7 @@ public class Signup extends AppCompatActivity {
     private String name,email,password,mobile;
     private static final String TAG = "Signup";
     ProgressDialog progressDialog;
+    FirebaseAuth firebaseAuth ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +123,7 @@ public class Signup extends AppCompatActivity {
 
     private void registerUser(String email, String password, String name, String mobile) {
 
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
         progressDialog.show();
         firebaseAuth.createUserWithEmailAndPassword(email,password)
@@ -131,7 +132,7 @@ public class Signup extends AppCompatActivity {
                     public void onSuccess(AuthResult authResult) {
 
                         progressDialog.cancel();
-                        startActivity(new Intent(getApplicationContext(),Sign_in.class));
+                        sendEmailVerification();
 
                         firebaseFirestore.collection("Users")
                                 .document(FirebaseAuth.getInstance().getUid())
@@ -148,4 +149,22 @@ public class Signup extends AppCompatActivity {
 
     }
 
+    private void sendEmailVerification(){
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if(firebaseUser!=null){
+            firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    Toast.makeText(getApplicationContext(), "Verification email is sent, Verify and login again", Toast.LENGTH_LONG).show();
+                    firebaseAuth.signOut();
+                    finish();
+                    startActivity(new Intent(Signup.this,Sign_in.class));
+                }
+            });
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Failed to send verification email", Toast.LENGTH_LONG).show();
+
+        }
+    }
 }
