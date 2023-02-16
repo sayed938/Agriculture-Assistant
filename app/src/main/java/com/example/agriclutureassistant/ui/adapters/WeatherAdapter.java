@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agriclutureassistant.R;
-import com.example.agriclutureassistant.pojo.WeatherModel;
+import com.example.agriclutureassistant.pojo.HourlyWeather;
 
 import java.util.List;
 
@@ -26,9 +26,9 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.myviewho
     }
 
     public static Context context;
-    public static List<WeatherModel>list;
+    public static List<HourlyWeather>list;
 
-    public WeatherAdapter(Context c, List<WeatherModel> data_list) {
+    public WeatherAdapter(Context c, List<HourlyWeather> data_list) {
         this.context = c;
         list = data_list;
     }
@@ -42,7 +42,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.myviewho
 
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
-        WeatherModel data = list.get(position);
+        HourlyWeather data = list.get(position);
         holder.tm.setText(data.getDegree());
         holder.cl.setText(data.getClock());
     }

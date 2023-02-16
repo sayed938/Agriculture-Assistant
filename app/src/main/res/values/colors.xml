@@ -13,7 +13,7 @@
     <color name="basiccolor2">#5E8859</color>
     <color name="haventaccount">#AAABAB</color>
     <color name="primarytext">#444440</color>
-    <color name="backgroundwheather">#5E8859</color>
+    <color name="main_background">#5E8859</color>
     <color name="bottomnav">#1E351B</color>
 
     <color name="profile">#5E8859</color>
