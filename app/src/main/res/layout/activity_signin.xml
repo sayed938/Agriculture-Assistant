@@ -19,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.461">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,10 +30,11 @@
             android:layout_marginBottom="50dp"
             android:textColor="@color/primarytext"
             android:textSize="35sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="60dp"
             android:text="Hello!"
             android:textColor="@color/primarytext"
@@ -40,28 +42,30 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="90dp"
             android:text="Welcome back"
             android:textColor="@color/primarytext"
             android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/edt_login_password"
             style="@style/edit_text_sign"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             android:layout_marginTop="20dp"
             android:hint="Password"
             />
 
         <EditText
+            android:id="@+id/edt_login_email"
             style="@style/edit_text_sign"
             android:layout_marginBottom="45dp"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:hint="Email"
             />
 
         <Button
-            android:id="@+id/signin"
+            android:id="@+id/signIn_login_btn"
             android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -73,14 +77,15 @@
             app:backgroundTint="@color/basiccolor2" />
 
         <TextView
+            android:id="@+id/forgot_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
             android:text="@string/forgetpass"
             android:layout_gravity="center"
             android:layout_marginTop="118dp"
-            android:textColor="@color/primarytext"
-            />
+            android:textColor="@color/primarytext" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,9 +93,8 @@
             android:textColor="@color/haventaccount"
             android:layout_marginBottom="8dp"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"/>
 
-            />
         <TextView
             android:id="@+id/back_signup"
             android:layout_width="wrap_content"
@@ -100,6 +104,7 @@
             android:layout_gravity="bottom"
             android:textAllCaps="false"
             android:layout_marginBottom="8dp"
-            android:layout_marginLeft="195dp"/>
+            android:layout_marginStart="190dp"/>
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

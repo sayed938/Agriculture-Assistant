@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1018490630955",
+    "project_id": "agricultureassistant-f9d46",
+    "storage_bucket": "agricultureassistant-f9d46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018490630955:android:bf035ac836246349524b6e",
+        "android_client_info": {
+          "package_name": "com.example.agriclutureassistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1018490630955-3o1jc61n1hmvm5pkoqnjif4c7v8j5eje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO75HuZORnbllpPZDnZPl2iyFWN7fhuIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1018490630955-3o1jc61n1hmvm5pkoqnjif4c7v8j5eje.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

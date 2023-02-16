@@ -18,6 +18,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomePage.this, Sign_in.class));
+
             }
         });
         findViewById(R.id.start_btn).setOnClickListener(new View.OnClickListener() {
@@ -26,5 +27,8 @@ public class HomePage extends AppCompatActivity {
                 startActivity(new Intent(HomePage.this, Signup.class));
             }
         });
+
+
     }
+
 }

@@ -8,6 +8,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import android.content.Context;
 import android.os.Bundle;
 
 import com.example.agriclutureassistant.R;
@@ -17,11 +19,14 @@ public class MainActivity extends AppCompatActivity {
  NavController navcontroller;
  BottomNavigationView bottomview;
 NavHostFragment navHostFragment;
+public Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        context = getApplicationContext();
 
        bottomview =(BottomNavigationView) findViewById(R.id.bottomNavigationView);
        navHostFragment=(NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_hostfragment);
@@ -38,4 +43,5 @@ NavHostFragment navHostFragment;
 
 
     }
+
 }
