@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Logger;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -113,9 +114,7 @@ public class Sign_in extends AppCompatActivity {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         progressDialog.cancel();
-                        Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
-                        finish();
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        checkMailVerification();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -161,5 +160,18 @@ public class Sign_in extends AppCompatActivity {
                     }
                 }
             });
+    }
+
+    private void checkMailVerification(){
+        FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
+        if(firebaseUser.isEmailVerified()){
+            Toast.makeText(getApplicationContext(),"Logged In",Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(new Intent(Sign_in.this,MainActivity.class));
+
+        }else{
+            Toast.makeText(getApplicationContext(),"Verify your mail first",Toast.LENGTH_SHORT).show();
+            firebaseAuth.signOut();
+        }
     }
 }
