@@ -1,9 +1,9 @@
 package com.example.agriclutureassistant.pojo;
 
-public class NextForecastModel {
+public class WeeklyWeather {
     String day,temper;
 
-    public NextForecastModel(String day, String temper) {
+    public WeeklyWeather(String day, String temper) {
         this.day = day;
         this.temper = temper;
     }

@@ -10,16 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agriclutureassistant.R;
-import com.example.agriclutureassistant.pojo.NextForecastModel;
+import com.example.agriclutureassistant.pojo.WeeklyWeather;
 
 import java.util.List;
 
 public class NTimesAdapter extends RecyclerView.Adapter<NTimesAdapter.ViewHolder> {
 
     public static Context context;
-    public static List<NextForecastModel> list;
+    public static List<WeeklyWeather> list;
 
-    public NTimesAdapter(Context c, List<NextForecastModel> data_list) {
+    public NTimesAdapter(Context c, List<WeeklyWeather> data_list) {
         this.context = c;
         list = data_list;
     }
@@ -33,7 +33,7 @@ public class NTimesAdapter extends RecyclerView.Adapter<NTimesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        NextForecastModel data = list.get(position);
+        WeeklyWeather data = list.get(position);
         holder.day.setText(data.getDay());
         holder.temp.setText(data.getTemper());
     }

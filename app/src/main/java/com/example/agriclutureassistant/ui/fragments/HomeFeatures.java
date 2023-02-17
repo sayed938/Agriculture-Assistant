@@ -71,7 +71,7 @@ public class HomeFeatures extends Fragment {
         list.addAll(Arrays.asList(new HomeFeaturesModel[]{place1,place2,place3}));
         return list;
     }
-    public String localDate(){
+    public static String localDate(){
         String date="";
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             LocalDate localDate=LocalDate.now();

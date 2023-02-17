@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
 
         android:orientation="vertical"
-        android:background="@color/backgroundwheather"
+        android:background="@color/main_background"
         tools:context=".ui.base.MainActivity">
 
         <RelativeLayout
@@ -137,7 +137,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:background="@color/backgroundwheather"
+            android:background="@color/main_background"
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
