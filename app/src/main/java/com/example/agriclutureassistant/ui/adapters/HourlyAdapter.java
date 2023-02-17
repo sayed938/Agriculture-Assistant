@@ -16,13 +16,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.MyViewHolder> {
+public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.MyViewHolder> {
 
     public static Context context;
 
     public static List<WeatherModel.Hour> list;
 
-    public WeatherAdapter(List<WeatherModel.Hour> data_list) {
+    public HourlyAdapter(List<WeatherModel.Hour> data_list) {
         list = data_list;
     }
 

@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/day"
+            android:id="@+id/weekly_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -26,18 +26,18 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/nexttempr"
+            android:id="@+id/weekly_temper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="29º"
             android:layout_marginRight="60dp"
+            android:text="29º"
             android:textSize="17sp"
 
             />
 
         <ImageView
-            android:id="@+id/textView14"
+            android:id="@+id/weekly_img"
             android:layout_width="33dp"
             android:layout_height="32dp"
             android:layout_gravity="center"

@@ -32,13 +32,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Signup extends AppCompatActivity {
 
-    private EditText edt_name,edt_email,edt_phone,edt_pass;
+    private EditText edt_name, edt_email, edt_phone, edt_pass;
     private Button signUp_btn;
     private TextView signIn;
-    private String name,email,password,mobile;
+    private String name, email, password, mobile;
     private static final String TAG = "Signup";
     ProgressDialog progressDialog;
-    FirebaseAuth firebaseAuth ;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +56,7 @@ public class Signup extends AppCompatActivity {
 
     }
 
-    public void assignVariables()
-    {
+    public void assignVariables() {
         edt_email = findViewById(R.id.edt_register_email);
         edt_name = findViewById(R.id.edt_register_username);
         edt_pass = findViewById(R.id.edt_register_password);
@@ -65,8 +64,8 @@ public class Signup extends AppCompatActivity {
         signUp_btn = findViewById(R.id.signup_register_btn);
         signIn = findViewById(R.id.signin_register_txt_view);
     }
-    public void clickingToRegister()
-    {
+
+    public void clickingToRegister() {
         signUp_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,43 +77,29 @@ public class Signup extends AppCompatActivity {
                 mobile = edt_phone.getText().toString();
 
                 //Validation email,name,password and mobile number
-                if(TextUtils.isEmpty(name))
-                {
+                if (TextUtils.isEmpty(name)) {
                     edt_name.setError("Full name is required");
                     edt_name.requestFocus();
-                }
-                else if(TextUtils.isEmpty(email))
-                {
+                } else if (TextUtils.isEmpty(email)) {
                     edt_email.setError("Email is required");
                     edt_email.requestFocus();
-                }
-                else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
-                {
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     edt_email.setError("Email address is not valid");
                     edt_email.requestFocus();
-                }
-                else if(TextUtils.isEmpty(mobile))
-                {
+                } else if (TextUtils.isEmpty(mobile)) {
                     edt_phone.setError("phone number is required");
                     edt_phone.requestFocus();
-                }
-                else if(mobile.length() < 11)
-                {
+                } else if (mobile.length() < 11) {
                     edt_phone.setError("phone number is not valid");
                     edt_phone.requestFocus();
-                }
-                else if(TextUtils.isEmpty(password))
-                {
+                } else if (TextUtils.isEmpty(password)) {
                     edt_pass.setError("Password is required");
                     edt_pass.requestFocus();
-                }
-                else if (password.length() < 6)
-                {
+                } else if (password.length() < 6) {
                     edt_pass.setError("Password should be more than 6 digits.");
                     edt_pass.requestFocus();
-                }
-                else {
-                    registerUser(email,password,name,mobile);
+                } else {
+                    registerUser(email, password, name, mobile);
                 }
 
             }
@@ -123,10 +108,10 @@ public class Signup extends AppCompatActivity {
 
     private void registerUser(String email, String password, String name, String mobile) {
 
-         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
         progressDialog.show();
-        firebaseAuth.createUserWithEmailAndPassword(email,password)
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
@@ -136,7 +121,7 @@ public class Signup extends AppCompatActivity {
 
                         firebaseFirestore.collection("Users")
                                 .document(FirebaseAuth.getInstance().getUid())
-                                .set(new UserSignUpData(name,mobile,email));
+                                .set(new UserSignUpData(name, mobile, email));
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -149,20 +134,19 @@ public class Signup extends AppCompatActivity {
 
     }
 
-    private void sendEmailVerification(){
+    private void sendEmailVerification() {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if(firebaseUser!=null){
+        if (firebaseUser != null) {
             firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     Toast.makeText(getApplicationContext(), "Verification email is sent, Verify and login again", Toast.LENGTH_LONG).show();
                     firebaseAuth.signOut();
                     finish();
-                    startActivity(new Intent(Signup.this,Sign_in.class));
+                    startActivity(new Intent(Signup.this, Sign_in.class));
                 }
             });
-        }
-        else {
+        } else {
             Toast.makeText(getApplicationContext(), "Failed to send verification email", Toast.LENGTH_LONG).show();
 
         }

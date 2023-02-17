@@ -7,7 +7,12 @@
     tools:context=".ui.fragments.HomeFeatures">
 
     <!-- TODO: Update blank fragment layout -->
-
+    <ProgressBar
+        android:id="@+id/main_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="visible" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -75,15 +80,12 @@
                         android:layout_marginStart="10dp"
                         android:orientation="horizontal">
 
-                        <ImageView
-                            android:id="@+id/location_icon"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_baseline_location_on_24"/>
+
                         <TextView
+                            android:id="@+id/main_day"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/location"
+                            android:text="Day"
                             android:textColor="@color/home_text_color"
                             android:textStyle="bold"
                             android:layout_marginStart="2dp"
@@ -112,7 +114,7 @@
                                 android:layout_marginTop="10dp"/>
 
                             <TextView
-                                android:id="@+id/temperature_degree_tv"
+                                android:id="@+id/main_temper"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/temperature_degree"
@@ -128,6 +130,8 @@
                             android:layout_height="80dp"
                             android:src="@drawable/temperatures"
                             android:layout_marginStart="100dp"/>
+
+
                     </LinearLayout>
                 </LinearLayout>
 
