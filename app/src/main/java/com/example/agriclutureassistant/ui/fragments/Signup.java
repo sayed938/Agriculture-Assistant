@@ -72,10 +72,10 @@ public class Signup extends AppCompatActivity {
             public void onClick(View view) {
 
                 //filling string variables
-                name = edt_name.getText().toString();
-                password = edt_pass.getText().toString();
-                email = edt_email.getText().toString();
-                mobile = edt_phone.getText().toString();
+                name = edt_name.getText().toString().trim();
+                password = edt_pass.getText().toString().trim();
+                email = edt_email.getText().toString().trim();
+                mobile = edt_phone.getText().toString().trim();
 
                 //Validation email,name,password and mobile number
                 if(TextUtils.isEmpty(name))
