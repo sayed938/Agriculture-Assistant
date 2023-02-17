@@ -121,7 +121,7 @@ public class Signup extends AppCompatActivity {
 
                         firebaseFirestore.collection("Users")
                                 .document(FirebaseAuth.getInstance().getUid())
-                                .set(new UserSignUpData(name, mobile, email));
+                                .set(new UserSignUpData(name, mobile, email,password));
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

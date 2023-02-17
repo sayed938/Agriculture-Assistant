@@ -52,7 +52,7 @@
                 android:layout_below="@+id/good_morning_tv"
                 android:layout_alignStart="@+id/image"
                 android:layout_marginStart="40dp"
-                android:textSize="30sp"/>
+                android:textSize="20sp"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
