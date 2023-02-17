@@ -45,35 +45,38 @@
             android:textSize="20dp"
             />
         <EditText
+            android:id="@+id/edt_register_phone"
             style="@style/edit_text_sign"
-            android:inputType="textPersonName"
+            android:inputType="phone"
             android:layout_marginTop="40dp"
             android:hint="Phone Number"
             android:padding="10dp" />
 
         <EditText
+            android:id="@+id/edt_register_password"
             style="@style/edit_text_sign"
             android:layout_marginTop="100dp"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:hint="Password"
             android:padding="10dp"/>
 
         <EditText
+            android:id="@+id/edt_register_email"
             style="@style/edit_text_sign"
             android:layout_marginBottom="20dp"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:hint="Email"
             android:padding="10dp"/>
 
         <EditText
+            android:id="@+id/edt_register_username"
             style="@style/edit_text_sign"
             android:layout_marginBottom="80dp"
             android:inputType="textPersonName"
-            android:hint="User Name"
-            />
+            android:hint="User Name" />
 
         <Button
-            android:id="@+id/signup"
+            android:id="@+id/signup_register_btn"
             android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -95,6 +98,7 @@
 
             />
         <TextView
+            android:id="@+id/signin_register_txt_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sign in"
@@ -102,6 +106,6 @@
             android:layout_gravity="bottom"
             android:textAllCaps="false"
             android:layout_marginBottom="5dp"
-            android:layout_marginLeft="205dp"/>
+            android:layout_marginStart="190dp"/>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
