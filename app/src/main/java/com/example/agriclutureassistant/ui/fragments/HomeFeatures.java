@@ -6,22 +6,33 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.agriclutureassistant.R;
 import com.example.agriclutureassistant.pojo.HomeFeaturesModel;
 import com.example.agriclutureassistant.pojo.WeatherModel;
+import com.example.agriclutureassistant.ui.MainActivity;
 import com.example.agriclutureassistant.ui.ViewModel;
 import com.example.agriclutureassistant.ui.adapters.HomeFeaturesAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -30,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 
 public class HomeFeatures extends Fragment {
@@ -41,6 +53,12 @@ public class HomeFeatures extends Fragment {
     private TextView date, day, temper;
     private ViewModel viewModel;
     private ProgressBar bar;
+    //**********//
+    private static final String TAG = "HomeFeatures";
+    TextView user_name_tv;
+    FirebaseFirestore firebaseFirestore;
+    FirebaseAuth firebaseAuth;
+    String userId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +72,9 @@ public class HomeFeatures extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_features, container, false);
 
         //Assigning variables
+        user_name_tv = view.findViewById(R.id.user_name_tv);
+
+
         featuresRecycler = view.findViewById(R.id.recyclerView);
         featuresRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         featuresRecycler.setHasFixedSize(true);
@@ -73,6 +94,8 @@ public class HomeFeatures extends Fragment {
         featuresRecycler.setAdapter(adapter);
         day.setText(day(localDate()));
         Temper();
+
+        settingUserName();
 
     }
 
@@ -120,4 +143,20 @@ public class HomeFeatures extends Fragment {
             }
         });
     }
+
+
+    public void settingUserName() {
+
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        userId = firebaseAuth.getCurrentUser().getUid();
+        DocumentReference documentReference = firebaseFirestore.collection("Users").document(userId);
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                user_name_tv.setText(value.getString("username"));
+            }
+        });
+    }
+
 }
