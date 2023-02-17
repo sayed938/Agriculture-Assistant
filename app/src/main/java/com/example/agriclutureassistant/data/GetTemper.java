@@ -11,5 +11,5 @@ import retrofit2.http.Query;
 
 public interface GetTemper {
     @GET("/v1/forecast.json")
-    Observable<WeatherModel.Root> getTemper(@Query("key")String key, @Query("q")String q);
+    Observable<WeatherModel.Root> getTemper(@Query("key")String key, @Query("q")String q,@Query("days") int days);
 }
