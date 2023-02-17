@@ -16,5 +16,4 @@ public class WeatherBuilder {
     public GetTemper temperOBJ() {
         return retrofit.create(GetTemper.class);
     }
-
 }

@@ -180,16 +180,15 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/date_hourly"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:layout_margin="10dp"
-                    android:text="Mar,8"
                     android:textSize="18sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/wheatherrecycler"
+                    android:id="@+id/recyclerhourly"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -232,7 +231,7 @@
                     android:drawableStart="@drawable/calendar" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclernext"
+                    android:id="@+id/recyclerweekly"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"

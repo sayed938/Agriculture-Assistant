@@ -92,6 +92,9 @@ public class WeatherModel {
         public Astro astro;
         public ArrayList<Hour> hour;
 
+        public ArrayList<Hour> getHour() {
+            return hour;
+        }
     }
 
     public class Hour {
