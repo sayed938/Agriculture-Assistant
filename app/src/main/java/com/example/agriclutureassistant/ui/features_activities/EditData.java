@@ -5,7 +5,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -102,47 +104,74 @@ public class EditData extends AppCompatActivity {
                 String email = edt_email.getText().toString().trim();
                 firebaseUser = firebaseAuth.getCurrentUser();
 
+                if (TextUtils.isEmpty(name)) {
+                    edt_username.setError("Full name is required");
+                    edt_username.requestFocus();
+                } else if (TextUtils.isEmpty(email)) {
+                    edt_email.setError("Email is required");
+                    edt_email.requestFocus();
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    edt_email.setError("Email address is not valid");
+                    edt_email.requestFocus();
+                } else if (TextUtils.isEmpty(phone)) {
+                    edt_phone.setError("phone number is required");
+                    edt_phone.requestFocus();
+                } else if (phone.length() < 11) {
+                    edt_phone.setError("phone number is not valid");
+                    edt_phone.requestFocus();
+                } else if (TextUtils.isEmpty(pass)) {
+                    edt_pass.setError("Password is required");
+                    edt_pass.requestFocus();
+                } else if (pass.length() < 6) {
+                    edt_pass.setError("Password should be more than 6 digits.");
+                    edt_pass.requestFocus();
+                } else {
 
-                firebaseUser.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
 
-                        if (task.isSuccessful()) {
-                            firebaseUser.updatePassword(pass).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    firebaseUser.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                            if (task.isSuccessful()) {
+                                firebaseUser.updatePassword(pass).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                        if (task.isSuccessful())
+                                            Log.d(TAG, "fire: pass updated");
+                                        else
+                                            Log.d(TAG, "fire: error pass not updated");
+                                    }
+                                });
+                            } else {
+                                Log.d(TAG, "fire: Error auth failed");
+                            }
+                        }
+                    });
+
+                    firebaseAuth.updateCurrentUser(firebaseUser)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
-                                public void onComplete(@NonNull Task<Void> task) {
+                                public void onSuccess(Void unused) {
 
-                                    if (task.isSuccessful())
-                                        Log.d(TAG, "fire: pass updated");
-                                    else
-                                        Log.d(TAG, "fire: error pass not updated");
+                                    firebaseFirestore.collection("Users")
+                                            .document(userId)
+                                            .set(new UserSignUpData(name, phone, email, pass));
+
+                                    Toast.makeText(EditData.this, "Saved", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                    Toast.makeText(EditData.this, "Failed", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                        } else {
-                            Log.d(TAG, "fire: Error auth failed");
-                        }
-                    }
-                });
 
-                firebaseAuth.updateCurrentUser(firebaseUser)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
+                }
 
-                                firebaseFirestore.collection("Users")
-                                        .document(userId)
-                                        .set(new UserSignUpData(name, phone, email, pass));
 
-                                Toast.makeText(EditData.this, "Saved", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-
-                                Toast.makeText(EditData.this, "Failed", Toast.LENGTH_SHORT).show();
-                            }
-                        });
             }
 
 
