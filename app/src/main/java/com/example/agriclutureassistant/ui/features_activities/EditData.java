@@ -33,7 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class EditData extends AppCompatActivity {
 
     EditText edt_username, edt_phone, edt_pass;
-    TextView edt_email;
+    TextView edt_email,headName;
     Button save_btn;
     //firebase area
     private FirebaseAuth firebaseAuth;
@@ -66,6 +66,7 @@ public class EditData extends AppCompatActivity {
         edt_username = findViewById(R.id.edt_username);
         edt_phone = findViewById(R.id.edt_phone);
         save_btn = findViewById(R.id.save_data_btn);
+        headName = findViewById(R.id.nameTV);
     }
 
     public void settingUserData() {
@@ -81,6 +82,7 @@ public class EditData extends AppCompatActivity {
                 edt_email.setText(value.getString("email"));
                 edt_phone.setText(value.getString("phone"));
                 edt_username.setText(value.getString("username"));
+                headName.setText(value.getString("username"));
                 edt_pass.setText(value.getString("password"));
                 credential = EmailAuthProvider
                         .getCredential(value.getString("email"),value.getString("password"));
