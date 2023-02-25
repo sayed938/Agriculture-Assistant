@@ -1,6 +1,8 @@
 package com.example.agriclutureassistant.ui.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.agriclutureassistant.ProjectData;
 import com.example.agriclutureassistant.ui.MainActivity;
 import com.example.agriclutureassistant.ui.features_activities.EditData;
 import com.example.agriclutureassistant.R;
@@ -40,6 +43,9 @@ public class Settings extends Fragment {
     FirebaseFirestore firebaseFirestore;
     String userId;
     TextView txt_name,txt_phone,txt_email,txt_pass;
+    //******//
+    SharedPreferences sharedPreferences;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,8 +79,12 @@ public class Settings extends Fragment {
             public void onClick(View v) {
 
                 firebaseAuth.signOut();
-                requireActivity().onBackPressed();
-                startActivity(new Intent(getActivity(),Sign_in.class));
+                sharedPreferences = getActivity().getSharedPreferences(ProjectData.filename, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.apply();
+                getActivity().onBackPressed();
+                startActivity(new Intent(getActivity(),HomePage.class));
             }
 
         });

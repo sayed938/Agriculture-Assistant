@@ -79,6 +79,9 @@ public class HomeFeatures extends Fragment {
         featuresRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         featuresRecycler.setHasFixedSize(true);
         date = view.findViewById(R.id.date_txt);
+
+        settingUserName();
+
         return view;
     }
 
@@ -95,7 +98,7 @@ public class HomeFeatures extends Fragment {
         day.setText(day(localDate()));
         Temper();
 
-        settingUserName();
+
 
     }
 
@@ -147,16 +150,20 @@ public class HomeFeatures extends Fragment {
 
     public void settingUserName() {
 
-        firebaseFirestore = FirebaseFirestore.getInstance();
-        firebaseAuth = FirebaseAuth.getInstance();
-        userId = firebaseAuth.getCurrentUser().getUid();
-        DocumentReference documentReference = firebaseFirestore.collection("Users").document(userId);
-        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                user_name_tv.setText(value.getString("username"));
-            }
-        });
+        try {
+            firebaseFirestore = FirebaseFirestore.getInstance();
+            firebaseAuth = FirebaseAuth.getInstance();
+            userId = firebaseAuth.getCurrentUser().getUid();
+            DocumentReference documentReference = firebaseFirestore.collection("Users").document(userId);
+            documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                    user_name_tv.setText(value.getString("username"));
+                }
+            });
+        }catch (Exception e){
+            Log.d(TAG, "SHR: settingUserName: "+e.getMessage());
+        }
     }
 
 }

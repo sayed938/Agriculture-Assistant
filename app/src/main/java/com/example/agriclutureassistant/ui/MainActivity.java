@@ -1,6 +1,5 @@
 package com.example.agriclutureassistant.ui;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.appcompat.widget.Toolbar;
@@ -9,10 +8,12 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.agriclutureassistant.ProjectData;
 import com.example.agriclutureassistant.pojo.UserSignUpData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private UserSignUpData userSignUpData;
     //*******//
 
+    SharedPreferences sharedPreferences;
 
 
 
@@ -43,8 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
+        sharedPreferences = getSharedPreferences(ProjectData.filename,Context.MODE_PRIVATE);
 
 
         context = getApplicationContext();

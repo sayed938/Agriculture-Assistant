@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -17,6 +19,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.agriclutureassistant.ProjectData;
 import com.example.agriclutureassistant.R;
 import com.example.agriclutureassistant.ui.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,6 +42,9 @@ public class Sign_in extends AppCompatActivity {
     private TextView forgot_pass, go_to_signUp;
     FirebaseAuth firebaseAuth;
     ProgressDialog progressDialog;
+    SharedPreferences sharedPreferences;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,13 @@ public class Sign_in extends AppCompatActivity {
 
         //Assign Variables
         assignLoginVariables();
+
+
+        sharedPreferences = getSharedPreferences(ProjectData.filename, Context.MODE_PRIVATE);
+        if (sharedPreferences.contains(ProjectData.email_)){
+
+            startActivity(new Intent(Sign_in.this,MainActivity.class));
+        }
 
         //Going back to signUp fragment
         go_to_signUp.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +118,10 @@ public class Sign_in extends AppCompatActivity {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         progressDialog.cancel();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString(ProjectData.email_,email);
+                        editor.putString(ProjectData.password,pass);
+                        editor.apply();
                         checkMailVerification();
                     }
                 })
