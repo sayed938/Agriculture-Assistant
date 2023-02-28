@@ -30,7 +30,7 @@ public class ViewModel extends androidx.lifecycle.ViewModel {
     @SuppressLint("CheckResult")
     public void getCurrentTemper() {
 
-        Observable<WeatherModel.Root> observable = new WeatherBuilder().temperOBJ().getTemper(api_key, "Benha", 5)
+        Observable<WeatherModel.Root> observable = new WeatherBuilder().temperOBJ().getTemper(api_key, "Cairo", 5)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         observable.subscribe(o -> livedataWeather1.setValue(o), e -> Log.d(TAG, "ERROR : " + e));
