@@ -21,10 +21,12 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
         findViewById(R.id.join_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomePage.this, Sign_in.class));
+                finish();
 
             }
         });
@@ -32,6 +34,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomePage.this, Signup.class));
+                finish();
             }
         });
 
@@ -41,6 +44,7 @@ public class HomePage extends AppCompatActivity {
         if (sharedPreferences.contains(ProjectData.email_)){
 
             startActivity(new Intent(HomePage.this, MainActivity.class));
+            finish();
         }
     }
 
