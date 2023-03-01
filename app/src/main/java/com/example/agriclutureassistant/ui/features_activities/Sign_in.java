@@ -1,10 +1,7 @@
-package com.example.agriclutureassistant.ui.fragments;
-
-import static java.security.AccessController.*;
+package com.example.agriclutureassistant.ui.features_activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -29,11 +26,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Logger;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.security.AccessController;
 
 public class Sign_in extends AppCompatActivity {
 

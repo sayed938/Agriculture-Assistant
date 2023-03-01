@@ -34,9 +34,6 @@ public class BookingComponent extends Fragment {
 
     private EditText edit_name, edit_phone, edit_address;
     private Button book_btn;
-    private FirebaseAuth firebaseAuth;
-    private FirebaseFirestore firebaseFirestore;
-    private DocumentReference documentReference;
     private String name, phone, address;
     private NavController navController;
 
@@ -95,8 +92,8 @@ public class BookingComponent extends Fragment {
 
     public void setDataInCollection(String name, String address, String phone) {
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseFirestore = FirebaseFirestore.getInstance();
+
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
         firebaseFirestore.collection("bookData")
                 .document(FirebaseAuth.getInstance().getUid())

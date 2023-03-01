@@ -11,6 +11,8 @@ import android.view.View;
 import com.example.agriclutureassistant.ProjectData;
 import com.example.agriclutureassistant.R;
 import com.example.agriclutureassistant.ui.MainActivity;
+import com.example.agriclutureassistant.ui.features_activities.Sign_in;
+import com.example.agriclutureassistant.ui.features_activities.Signup;
 
 public class HomePage extends AppCompatActivity {
 

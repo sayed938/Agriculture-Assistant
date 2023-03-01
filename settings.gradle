@@ -10,6 +10,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://maven.google.com'}
+        jcenter()
     }
 }
 rootProject.name = "Agricluture Assistant"
