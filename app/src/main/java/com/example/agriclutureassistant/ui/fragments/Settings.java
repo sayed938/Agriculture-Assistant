@@ -7,10 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,21 +15,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.agriclutureassistant.ProjectData;
-import com.example.agriclutureassistant.ui.MainActivity;
 import com.example.agriclutureassistant.ui.features_activities.EditData;
 import com.example.agriclutureassistant.R;
-import com.google.android.gms.dynamic.SupportFragmentWrapper;
+import com.example.agriclutureassistant.ui.features_activities.Sign_in;
+import com.example.agriclutureassistant.ui.features_activities.Signup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-
-import java.util.Objects;
 
 
 public class Settings extends Fragment {
@@ -77,13 +71,13 @@ public class Settings extends Fragment {
             @Override
             public void onClick(View v) {
 
-                firebaseAuth.signOut();
+
                 sharedPreferences = getActivity().getSharedPreferences(ProjectData.filename, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear();
                 editor.apply();
                 getActivity().onBackPressed();
-                startActivity(new Intent(getActivity(), Signup.class));
+                startActivity(new Intent(requireActivity(), Sign_in.class));
             }
 
         });
