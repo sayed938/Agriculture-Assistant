@@ -10,9 +10,11 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.agriclutureassistant.ProjectData;
 import com.example.agriclutureassistant.pojo.UserSignUpData;
+import com.example.agriclutureassistant.ui.fragments.Signup;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -64,6 +66,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
 }

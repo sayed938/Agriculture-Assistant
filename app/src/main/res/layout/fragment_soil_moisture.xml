@@ -12,9 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="100dp"
         android:text="Connection succeeded !"
-        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,8 +80,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        app:cardCornerRadius="3dp"
         android:layout_marginBottom="44dp"
-        android:backgroundTint="@color/basiccolor2"
+        android:backgroundTint="#376330"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
@@ -98,8 +98,24 @@
             android:layout_margin="5dp"
             android:gravity="center"
             android:lineHeight="22dp"
+            android:textColor="#c7f9cc"
             android:text="Ask in the social media section about the appropriate percentage of your soil for plant watering"
             android:textSize="18sp" />
     </androidx.cardview.widget.CardView>
 
+
+    <Button
+        android:id="@+id/book_component_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Book Component"
+        app:layout_constraintTop_toBottomOf="@id/button4"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:background="@drawable/custom_water"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

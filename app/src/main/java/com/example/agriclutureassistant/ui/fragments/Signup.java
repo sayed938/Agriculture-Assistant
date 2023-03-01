@@ -53,6 +53,13 @@ public class Signup extends AppCompatActivity {
         //Validation & Register process
         clickingToRegister();
 
+        signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Signup.this,Sign_in.class));
+            }
+        });
+
 
     }
 

@@ -15,7 +15,11 @@
         android:label="Soil Moisture"
         android:name="com.example.agriclutureassistant.ui.fragments.SoilMoisture"
         tools:layout="@layout/fragment_soil_moisture"
-        />
+        >
+        <action
+            android:id="@+id/action_hard_menu_to_bookingComponent"
+            app:destination="@id/bookingComponent" />
+    </fragment>
     <fragment
         android:id="@+id/home_menu"
         android:name="com.example.agriclutureassistant.ui.fragments.HomeFeatures"
@@ -26,5 +30,14 @@
         android:name="com.example.agriclutureassistant.ui.fragments.Settings"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/bookingComponent"
+        android:name="com.example.agriclutureassistant.ui.fragments.BookingComponent"
+        android:label="fragment_booking_component"
+        tools:layout="@layout/fragment_booking_component" >
+        <action
+            android:id="@+id/action_bookingComponent_to_hard_menu"
+            app:destination="@id/hard_menu" />
+    </fragment>
 
 </navigation>

@@ -59,7 +59,6 @@ public class Settings extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         pen_to_edit = view.findViewById(R.id.pen_to_edit);
         sign_out = view.findViewById(R.id.signOut_btn);
-
         txt_email=view.findViewById(R.id.txt_view_email);
         txt_pass=view.findViewById(R.id.txt_view_password);
         txt_name=view.findViewById(R.id.txt_view_userName);
@@ -84,7 +83,7 @@ public class Settings extends Fragment {
                 editor.clear();
                 editor.apply();
                 getActivity().onBackPressed();
-                startActivity(new Intent(getActivity(),HomePage.class));
+                startActivity(new Intent(getActivity(), Signup.class));
             }
 
         });
