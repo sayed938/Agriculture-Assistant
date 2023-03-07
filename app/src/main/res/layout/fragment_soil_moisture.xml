@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/isconnect" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/open_w"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="64dp"
@@ -63,7 +63,7 @@
         app:layout_constraintVertical_bias="0.464" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/close_w"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
@@ -77,13 +77,14 @@
         app:layout_constraintVertical_bias="0.468" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:cardCornerRadius="3dp"
         android:layout_marginBottom="44dp"
-        android:backgroundTint="#376330"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
+        android:backgroundTint="@color/main_background"
+        app:cardCornerRadius="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/close_w"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,24 +99,51 @@
             android:layout_margin="5dp"
             android:gravity="center"
             android:lineHeight="22dp"
-            android:textColor="#c7f9cc"
             android:text="Ask in the social media section about the appropriate percentage of your soil for plant watering"
+            android:textColor="#c7f9cc"
             android:textSize="18sp" />
     </androidx.cardview.widget.CardView>
 
 
     <Button
         android:id="@+id/book_component_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Book Component"
-        app:layout_constraintTop_toBottomOf="@id/button4"
-        android:layout_marginTop="20dp"
+        android:layout_width="166dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/custom_water"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:background="@drawable/custom_water"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Book Component"
+        android:textSize="12sp"
         android:textStyle="bold"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bt_reload"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/reload_sensor"
+        app:layout_constraintBottom_toTopOf="@+id/cardView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.052" />
+
+    <ProgressBar
+        android:id="@+id/progressBar_Soil"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/isconnect"
+        app:layout_constraintVertical_bias="0.016" />
 </androidx.constraintlayout.widget.ConstraintLayout>
