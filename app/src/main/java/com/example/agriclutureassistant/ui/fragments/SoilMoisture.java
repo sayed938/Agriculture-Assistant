@@ -33,8 +33,10 @@ import java.util.UUID;
 public class SoilMoisture extends Fragment {
     BluetoothAdapter bluetoothAdapter;
     TextView isconnect, percent;
+    OutputStream outputStream;
+    InputStream inputStream = null;
     ProgressBar bar;
-    private Button booking_btn, open_water, close_water,reload_bt;
+    private Button booking_btn, open_water, close_water, reload_bt;
     private BluetoothSocket socket = null;
     static final java.util.UUID UUID = java.util.UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
@@ -42,26 +44,26 @@ public class SoilMoisture extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_soil_moisture, container, false);
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        isconnect = view.findViewById(R.id.isconnect);
-        open_water = view.findViewById(R.id.open_w);
-        close_water = view.findViewById(R.id.close_w);
-        bar = view.findViewById(R.id.progressBar_Soil);
-        percent = view.findViewById(R.id.percentage);
-        reload_bt=view.findViewById(R.id.bt_reload);
+
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        isconnect = view.findViewById(R.id.isconnect);
+        open_water = view.findViewById(R.id.open_w);
+        close_water = view.findViewById(R.id.close_w);
+        percent = view.findViewById(R.id.percentage);
+        reload_bt = view.findViewById(R.id.bt_reload);
         if (ActivityCompat.checkSelfPermission(view.getContext(), android.Manifest.permission.BLUETOOTH_ADVERTISE) != PackageManager.PERMISSION_GRANTED) {
             startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE), 1);
         }
         try {
             defineBluetooth();
         }
-        catch (Exception e){
+        catch (Exception e) {
             isconnect.setText("Connection Error");
         }
             displayHumidity();
@@ -85,6 +87,7 @@ public class SoilMoisture extends Fragment {
             });
 
 
+
         booking_btn = view.findViewById(R.id.book_component_btn);
         NavController navController = Navigation.findNavController(view);
         booking_btn.setOnClickListener(new View.OnClickListener() {
@@ -96,59 +99,72 @@ public class SoilMoisture extends Fragment {
     }
 
     private void defineBluetooth() {
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         BluetoothDevice device = bluetoothAdapter.getRemoteDevice("00:22:04:00:24:7D");
         if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                isconnect.setText("Connection Success");
-                    }
-        int cnt = 1;
+            isconnect.setText("Bluetooth Connected");
+        }
+        int cnt = 0;
         do {
             try {
                 socket = device.createRfcommSocketToServiceRecord(UUID);
                 socket.connect();
-                bar.setVisibility(View.INVISIBLE);
+                System.out.println("Connection   :   " + socket.isConnected());
             } catch (IOException e) {
-                isconnect.setText("Connection Error");
+                System.out.println("InError : " + e.getMessage());
             }
             cnt++;
-        } while (!socket.isConnected() && cnt < 3);
+        } while (!socket.isConnected() && cnt < 5);
     }
 
     private void displayHumidity() {
+       // defineBluetooth();
         try {
-            OutputStream outputStream = socket.getOutputStream();
+            outputStream = socket.getOutputStream();
             outputStream.write(105);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        InputStream inputStream = null;
+
         try {
             inputStream = socket.getInputStream();
             inputStream.skip(inputStream.available());
             byte b = (byte) inputStream.read();
-            percent.setText(b + "%");
+            percent.setText("" + b);
         } catch (IOException e) {
-            bar.setVisibility(View.VISIBLE);
+            e.printStackTrace();
         }
     }
 
     public void openWater() {
+        //defineBluetooth();
         try {
-            OutputStream outputStream = socket.getOutputStream();
+            outputStream = socket.getOutputStream();
             outputStream.write(110);
         } catch (IOException e) {
-            bar.setVisibility(View.VISIBLE);
+            e.printStackTrace();
         }
     }
 
     public void closeWater() {
+        //defineBluetooth();
         try {
-            OutputStream outputStream = socket.getOutputStream();
+            outputStream = socket.getOutputStream();
             outputStream.write(107);
         } catch (IOException e) {
-            bar.setVisibility(View.VISIBLE);
+            e.printStackTrace();
         }
 
+    }
+
+    private void closeBluetooth() {
+        BluetoothSocket socket = null;
+        defineBluetooth();
+        try {
+            socket.close();
+            isconnect.setText("" + socket.isConnected());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
