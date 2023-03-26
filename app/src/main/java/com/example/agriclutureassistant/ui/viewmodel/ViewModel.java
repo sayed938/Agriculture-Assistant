@@ -1,4 +1,4 @@
-package com.example.agriclutureassistant.ui;
+package com.example.agriclutureassistant.ui.viewmodel;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import static com.example.agriclutureassistant.ProjectData.api_key;

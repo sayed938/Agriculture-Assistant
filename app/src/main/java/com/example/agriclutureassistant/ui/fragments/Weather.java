@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.example.agriclutureassistant.R;
 import com.example.agriclutureassistant.pojo.WeatherModel;
-import com.example.agriclutureassistant.ui.ViewModel;
+import com.example.agriclutureassistant.ui.viewmodel.ViewModel;
 import com.example.agriclutureassistant.ui.adapters.HourlyAdapter;
 import com.example.agriclutureassistant.ui.adapters.WeeklyAdapter;
 import com.squareup.picasso.Picasso;

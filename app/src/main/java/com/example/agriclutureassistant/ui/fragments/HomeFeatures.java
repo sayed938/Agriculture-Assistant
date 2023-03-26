@@ -16,16 +16,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.agriclutureassistant.R;
 import com.example.agriclutureassistant.pojo.HomeFeaturesModel;
 import com.example.agriclutureassistant.pojo.WeatherModel;
-import com.example.agriclutureassistant.ui.ViewModel;
+import com.example.agriclutureassistant.ui.viewmodel.ViewModel;
 import com.example.agriclutureassistant.ui.adapters.HomeFeaturesAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -158,6 +156,7 @@ public class HomeFeatures extends Fragment {
         userId = firebaseAuth.getCurrentUser().getUid();
 
         DocumentReference documentReference = firebaseFirestore.collection("Users").document(userId);
+
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {

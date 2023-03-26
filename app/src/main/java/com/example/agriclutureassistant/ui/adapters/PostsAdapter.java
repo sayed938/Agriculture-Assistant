@@ -7,14 +7,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agriclutureassistant.R;
-import com.example.agriclutureassistant.pojo.PostsModel;
-import com.example.agriclutureassistant.ui.features_activities.AddPost;
+import com.example.agriclutureassistant.pojo.PostModel;
 import com.example.agriclutureassistant.ui.features_activities.Comments;
 
 import java.util.ArrayList;
@@ -23,10 +21,15 @@ import java.util.List;
 
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.postholder> {
+
+    List<PostModel>list;
+
+
     public static class postholder extends RecyclerView.ViewHolder{
         TextView name,post;
         LinearLayout layout;
         Button clickIcon;
+
         public postholder(@NonNull View itemView) {
             super(itemView);
             name=itemView.findViewById(R.id.user_post);
@@ -35,8 +38,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.postholder> 
             clickIcon = itemView.findViewById(R.id.add_comment);
         }
     }
-    List<PostsModel>list=new ArrayList<>();
-    public PostsAdapter(List<PostsModel>list) {
+
+    public PostsAdapter(List<PostModel>list) {
         this.list=list;
     }
 
@@ -49,9 +52,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.postholder> 
 
     @Override
     public void onBindViewHolder(@NonNull PostsAdapter.postholder holder, int position) {
-           PostsModel model=list.get(position);
-           holder.name.setText(model.getName());
-           holder.post.setText(model.getPost());
+           PostModel model=list.get(position);
+           holder.name.setText(model.getUser_name());
+           holder.post.setText(model.getText());
            holder.layout.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
