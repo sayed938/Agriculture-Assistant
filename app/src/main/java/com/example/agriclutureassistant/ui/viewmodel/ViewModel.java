@@ -22,6 +22,8 @@ public class ViewModel extends androidx.lifecycle.ViewModel {
     public MutableLiveData<List<WeatherModel.Hour>> livedataWeather2 = new MutableLiveData<>();
     public MutableLiveData<List<WeatherModel.Forecastday>> liveDataWeather3 = new MutableLiveData<>();
 
+
+    
     @SuppressLint("CheckResult")
     public void getCurrentTemper() {
 
