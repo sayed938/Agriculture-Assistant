@@ -1,4 +1,4 @@
-package com.example.agriclutureassistant.ui;
+package com.example.agriclutureassistant.ui.viewmodel;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import static com.example.agriclutureassistant.ProjectData.api_key;
@@ -14,19 +14,16 @@ import com.example.agriclutureassistant.pojo.WeatherModel;
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ViewModel extends androidx.lifecycle.ViewModel {
     public MutableLiveData<WeatherModel.Root> livedataWeather1 = new MutableLiveData<>();
     public MutableLiveData<List<WeatherModel.Hour>> livedataWeather2 = new MutableLiveData<>();
     public MutableLiveData<List<WeatherModel.Forecastday>> liveDataWeather3 = new MutableLiveData<>();
 
+
+    
     @SuppressLint("CheckResult")
     public void getCurrentTemper() {
 

@@ -78,6 +78,7 @@ public class Settings extends Fragment {
                 editor.apply();
                 getActivity().onBackPressed();
                 startActivity(new Intent(requireActivity(), Sign_in.class));
+                requireActivity().finish();
             }
 
         });
