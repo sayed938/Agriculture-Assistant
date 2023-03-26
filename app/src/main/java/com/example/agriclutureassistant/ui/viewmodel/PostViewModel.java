@@ -31,7 +31,6 @@ public class PostViewModel extends ViewModel {
         return getAllPostsALiveData;
     }
 
-
     public void getAllPosts() {
 
         Single<PostRoot> observable = remoteRequest.getRequest().getAllPosts()
@@ -42,29 +41,17 @@ public class PostViewModel extends ViewModel {
 
     public void setPost(PostModel postModel) {
 
-        public void getAllPosts () {
+        remoteRequest.getRequest().addPost(postModel).enqueue(new Callback<PostModel>() {
+            @Override
+            public void onResponse(Call<PostModel> call, Response<PostModel> response) {
+                Log.d(TAG, "SHR: Post is sent successfully.");
+            }
 
-            Single<PostRoot> observable = remoteRequest.getRequest().getAllPosts()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread());
-            compositeDisposable.add(observable.subscribe(o -> getAllPostsALiveData.setValue(o.posts)));
-        }
+            @Override
+            public void onFailure(Call<PostModel> call, Throwable t) {
 
-        public void setPost(PostModel postModel){
-
-
-            remoteRequest.getRequest().addPost(postModel).enqueue(new Callback<PostModel>() {
-                @Override
-                public void onResponse(Call<PostModel> call, Response<PostModel> response) {
-                    Log.d(TAG, "SHR: Post is sent successfully.");
-                }
-
-                @Override
-                public void onFailure(Call<PostModel> call, Throwable t) {
-
-                }
-            });
-        }
-
+            }
+        });
     }
+
 }
