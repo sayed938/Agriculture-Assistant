@@ -43,6 +43,7 @@ public class HomePage extends AppCompatActivity {
 
 
         sharedPreferences = getSharedPreferences(ProjectData.filename, Context.MODE_PRIVATE);
+        //Checking if the user still logging or not.
         if (sharedPreferences.contains(ProjectData.email_)){
 
             startActivity(new Intent(HomePage.this, MainActivity.class));
