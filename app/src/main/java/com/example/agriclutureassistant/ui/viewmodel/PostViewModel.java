@@ -31,15 +31,15 @@ public class PostViewModel extends ViewModel {
         return getAllPostsALiveData;
     }
 
-    public void getAllPosts(){
+    public void getAllPosts() {
 
-        Single<PostRoot> observable =remoteRequest.getRequest().getAllPosts()
+        Single<PostRoot> observable = remoteRequest.getRequest().getAllPosts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
-        compositeDisposable.add(observable.subscribe(o-> getAllPostsALiveData.setValue(o.posts)));
+        compositeDisposable.add(observable.subscribe(o -> getAllPostsALiveData.setValue(o.posts)));
     }
 
-    public void setPost(PostModel postModel){
+    public void setPost(PostModel postModel) {
 
         remoteRequest.getRequest().addPost(postModel).enqueue(new Callback<PostModel>() {
             @Override
