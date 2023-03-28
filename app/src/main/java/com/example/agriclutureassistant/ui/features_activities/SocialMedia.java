@@ -46,13 +46,13 @@ public class SocialMedia extends AppCompatActivity {
 
         try {
             getAllPosts();
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.d(TAG, "SHR: Error");
         }
 
     }
 
-    public void getAllPosts(){
+    public void getAllPosts() {
 
         postViewModel.getAllPosts();
         postViewModel.getGetAllPostsALiveData().observe(this, new Observer<List<PostModel>>() {
