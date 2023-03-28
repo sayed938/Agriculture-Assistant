@@ -15,7 +15,6 @@ import com.example.agriclutureassistant.R;
 import com.example.agriclutureassistant.pojo.PostModel;
 import com.example.agriclutureassistant.ui.features_activities.Comments;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -58,19 +57,19 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.postholder> 
            holder.layout.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
-                   view.getContext().startActivity(new Intent(view.getContext(), Comments.class));
-               }
+                   Intent intent=new Intent(view.getContext(), Comments.class);
+                   intent.putExtra("postid",model.getId());
+                   view.getContext().startActivity(intent);               }
            });
            holder.clickIcon.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
-                   view.getContext().startActivity(new Intent(view.getContext(), Comments.class));
-
+                   Intent intent=new Intent(view.getContext(), Comments.class);
+                   intent.putExtra("postid",model.getId());
+                   view.getContext().startActivity(intent);
                }
            });
-
     }
-
     @Override
     public int getItemCount() {
         return list.size();
