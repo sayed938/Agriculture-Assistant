@@ -2,31 +2,31 @@ package com.example.agriclutureassistant.pojo;
 
 public class PostModel {
 
-    String post_id;
+    String id;
     String user_name;
     String text;
-    String Password;
+    String postDate;
 
 
     public PostModel(String post_id, String user_name, String text, String password) {
-        this.post_id = post_id;
+        this.id = post_id;
         this.user_name = user_name;
         this.text = text;
-        Password = password;
+        postDate = password;
     }
 
     public PostModel(String user_name, String text, String password) {
         this.user_name = user_name;
         this.text = text;
-        Password = password;
+        postDate = password;
     }
 
-    public String getPost_id() {
-        return post_id;
+    public String getId() {
+        return id;
     }
 
-    public void setPost_id(String post_id) {
-        this.post_id = post_id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUser_name() {
@@ -45,12 +45,12 @@ public class PostModel {
         this.text = text;
     }
 
-    public String getPassword() {
-        return Password;
+    public String getPostDate() {
+        return postDate;
     }
 
-    public void setPassword(String password) {
-        Password = password;
+    public void setPostDate(String postDate) {
+        this.postDate = postDate;
     }
 }
 

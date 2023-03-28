@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.agriclutureassistant.R;
 import com.example.agriclutureassistant.ui.MainActivity;
@@ -58,34 +59,32 @@ public class SoilMoisture extends Fragment {
         percent = view.findViewById(R.id.percentage);
         reload_bt = view.findViewById(R.id.bt_reload);
         if (ActivityCompat.checkSelfPermission(view.getContext(), android.Manifest.permission.BLUETOOTH_ADVERTISE) != PackageManager.PERMISSION_GRANTED) {
+            try {
+                defineBluetooth();
+            } catch (Exception e) {
+                Toast.makeText(getContext(), "Connection Error", Toast.LENGTH_SHORT).show();            }
             startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE), 1);
         }
-        try {
-            defineBluetooth();
-        }
-        catch (Exception e) {
-            isconnect.setText("Connection Error");
-        }
-            displayHumidity();
-            reload_bt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    displayHumidity();
-                }
-            });
-            open_water.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openWater();
-                }
-            });
-            close_water.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    closeWater();
-                }
-            });
 
+        displayHumidity();
+        reload_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayHumidity();
+            }
+        });
+        open_water.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWater();
+            }
+        });
+        close_water.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeWater();
+            }
+        });
 
 
         booking_btn = view.findViewById(R.id.book_component_btn);
@@ -117,7 +116,6 @@ public class SoilMoisture extends Fragment {
     }
 
     private void displayHumidity() {
-       // defineBluetooth();
         try {
             outputStream = socket.getOutputStream();
             outputStream.write(105);
@@ -129,14 +127,13 @@ public class SoilMoisture extends Fragment {
             inputStream = socket.getInputStream();
             inputStream.skip(inputStream.available());
             byte b = (byte) inputStream.read();
-            percent.setText("" + b);
+            percent.setText(b + "%");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void openWater() {
-        //defineBluetooth();
         try {
             outputStream = socket.getOutputStream();
             outputStream.write(110);
@@ -146,7 +143,6 @@ public class SoilMoisture extends Fragment {
     }
 
     public void closeWater() {
-        //defineBluetooth();
         try {
             outputStream = socket.getOutputStream();
             outputStream.write(107);
