@@ -6,19 +6,20 @@ public class PostModel {
     String user_name;
     String text;
     String postDate;
+    String Password;
 
 
-    public PostModel(String post_id, String user_name, String text, String password) {
+    public PostModel(String post_id, String user_name, String text, String postDate) {
         this.id = post_id;
         this.user_name = user_name;
         this.text = text;
-        postDate = password;
+        this.postDate = postDate;
     }
 
     public PostModel(String user_name, String text, String password) {
         this.user_name = user_name;
         this.text = text;
-        postDate = password;
+        this.Password = password;
     }
 
     public String getId() {
