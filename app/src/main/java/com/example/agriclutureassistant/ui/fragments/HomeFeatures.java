@@ -161,6 +161,7 @@ public class HomeFeatures extends Fragment {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 user_name_tv.setText(value.getString("username"));
+
             }
         });
 
