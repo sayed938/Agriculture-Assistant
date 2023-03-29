@@ -1,5 +1,6 @@
 package com.example.agriclutureassistant.data;
 
+import com.example.agriclutureassistant.pojo.CommentModel;
 import com.example.agriclutureassistant.pojo.PostModel;
 import com.example.agriclutureassistant.pojo.PostRoot;
 
@@ -18,4 +19,7 @@ public interface SocialApiService {
 
     @POST("add_post.php")
     Call<PostModel> setPost(@Body PostModel postModel);
+
+    @POST("getCommintPost.php")
+    Single<PostRoot> getComments(@Body CommentModel commentModel);
 }

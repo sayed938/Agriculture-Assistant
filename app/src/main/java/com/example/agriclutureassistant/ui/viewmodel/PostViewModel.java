@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.agriclutureassistant.data.RemoteRequest;
+import com.example.agriclutureassistant.pojo.CommentModel;
 import com.example.agriclutureassistant.pojo.PostModel;
 import com.example.agriclutureassistant.pojo.PostRoot;
 
@@ -23,6 +24,7 @@ public class PostViewModel extends ViewModel {
     private static final String TAG = "PostViewModel";
 
     private MutableLiveData<List<PostModel>> getAllPostsALiveData = new MutableLiveData<>();
+    private MutableLiveData<List<CommentModel>> commentsLiveData = new MutableLiveData<>();
 
     private RemoteRequest remoteRequest = new RemoteRequest();
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -31,12 +33,20 @@ public class PostViewModel extends ViewModel {
         return getAllPostsALiveData;
     }
 
+    public MutableLiveData<List<CommentModel>> getCommentsLiveData() {
+        return commentsLiveData;
+    }
+
     public void getAllPosts() {
 
         Single<PostRoot> observable = remoteRequest.getRequest().getAllPosts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
-        compositeDisposable.add(observable.subscribe(o -> getAllPostsALiveData.setValue(o.posts)));
+        try {
+            compositeDisposable.add(observable.subscribe(o -> getAllPostsALiveData.setValue(o.posts)));
+        }catch (Exception e){
+            Log.d(TAG, "SHR: "+e.getMessage());
+        }
     }
 
     public void setPost(PostModel postModel) {
@@ -54,4 +64,10 @@ public class PostViewModel extends ViewModel {
         });
     }
 
+    public void getAllComments(CommentModel commentModel) {
+        Single<PostRoot> observable = remoteRequest.getRequest().getComments(commentModel)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        compositeDisposable.add(observable.subscribe(o -> commentsLiveData.setValue(o.Commint)));
+    }
 }

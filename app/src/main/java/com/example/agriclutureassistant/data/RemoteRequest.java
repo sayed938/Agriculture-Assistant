@@ -1,6 +1,7 @@
 package com.example.agriclutureassistant.data;
 
 import com.example.agriclutureassistant.ProjectData;
+import com.example.agriclutureassistant.pojo.CommentModel;
 import com.example.agriclutureassistant.pojo.PostModel;
 import com.example.agriclutureassistant.pojo.PostRoot;
 
@@ -38,6 +39,7 @@ public class RemoteRequest {
     {
         return apiService.getAllPosts(key);
     }
+    public Single<PostRoot> getComments(CommentModel commentModel){return apiService.getComments(commentModel);}
     public Call<PostModel> addPost(PostModel postModel){
         return apiService.setPost(postModel);
     }
