@@ -18,13 +18,13 @@ import retrofit2.http.Query;
 public interface SocialApiService {
 
     @GET("show_posts.php")
-    Single<PostRoot> getAllPosts(@Query("Passwors") String password);
+    Observable<PostRoot> getAllPosts(@Query("Passwors") String password);
 
     @POST("add_post.php")
     Call<PostModel> setPost(@Body PostModel postModel);
 
     @POST("getCommintPost.php")
-    Single<PostRoot> getComments(@Body CommentModel commentModel);
+    Observable<PostRoot> getComments(@Body CommentModel commentModel);
     @POST("add_commnt.php")
      Call<AddComment>postComments(@Body HashMap<Object,Object>map);
 

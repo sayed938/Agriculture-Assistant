@@ -5,6 +5,7 @@ import com.example.agriclutureassistant.pojo.CommentModel;
 import com.example.agriclutureassistant.pojo.PostModel;
 import com.example.agriclutureassistant.pojo.PostRoot;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -35,11 +36,11 @@ public class RemoteRequest {
         return INSTANCE;
     }
 
-    public Single<PostRoot> getAllPosts()
+    public Observable<PostRoot> getAllPosts()
     {
         return apiService.getAllPosts(key);
     }
-    public Single<PostRoot> getComments(CommentModel commentModel){return apiService.getComments(commentModel);}
+    public Observable<PostRoot> getComments(CommentModel commentModel){return apiService.getComments(commentModel);}
     public Call<PostModel> addPost(PostModel postModel){
         return apiService.setPost(postModel);
     }
