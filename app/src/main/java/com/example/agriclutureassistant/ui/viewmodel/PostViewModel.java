@@ -1,5 +1,6 @@
 package com.example.agriclutureassistant.ui.viewmodel;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
@@ -11,6 +12,7 @@ import com.example.agriclutureassistant.pojo.PostRoot;
 
 import java.util.List;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -37,13 +39,14 @@ public class PostViewModel extends ViewModel {
         return commentsLiveData;
     }
 
+    @SuppressLint("CheckResult")
     public void getAllPosts() {
 
-        Single<PostRoot> observable = remoteRequest.getRequest().getAllPosts()
+        Observable<PostRoot> observable = remoteRequest.getRequest().getAllPosts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         try {
-            compositeDisposable.add(observable.subscribe(o -> getAllPostsALiveData.setValue(o.posts)));
+            observable.subscribe(o -> getAllPostsALiveData.setValue(o.posts));
         }catch (Exception e){
             Log.d(TAG, "SHR: "+e.getMessage());
         }
@@ -64,10 +67,11 @@ public class PostViewModel extends ViewModel {
         });
     }
 
+    @SuppressLint("CheckResult")
     public void getAllComments(CommentModel commentModel) {
-        Single<PostRoot> observable = remoteRequest.getRequest().getComments(commentModel)
+        Observable<PostRoot> observable = remoteRequest.getRequest().getComments(commentModel)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
-        compositeDisposable.add(observable.subscribe(o -> commentsLiveData.setValue(o.Commint)));
+        observable.subscribe(o -> commentsLiveData.setValue(o.Commint));
     }
 }

@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,7 +26,6 @@ public class SocialMedia extends AppCompatActivity {
     List<PostModel> post_list = new ArrayList<>();
     private PostViewModel postViewModel = new PostViewModel();
     private static final String TAG = "SocialMedia";
-    Button addpost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +57,12 @@ public class SocialMedia extends AppCompatActivity {
 
         postViewModel.getAllPosts();
         postViewModel.getGetAllPostsALiveData().observe(this, new Observer<List<PostModel>>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onChanged(List<PostModel> postModels) {
                 post_list = postModels;
                 recyclerView.setAdapter(new PostsAdapter(post_list));
+                //new PostsAdapter(post_list).notifyDataSetChanged();
             }
         });
     }
