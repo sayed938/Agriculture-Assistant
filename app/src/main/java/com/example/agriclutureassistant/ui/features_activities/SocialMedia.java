@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.agriclutureassistant.R;
 import com.example.agriclutureassistant.pojo.PostModel;
@@ -47,7 +48,7 @@ public class SocialMedia extends AppCompatActivity {
         try {
             getAllPosts();
         } catch (Exception e) {
-            Log.d(TAG, "SHR: Error");
+            Toast.makeText(this, "ERROR", Toast.LENGTH_SHORT).show();
         }
 
     }
