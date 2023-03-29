@@ -32,7 +32,10 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
 
         return new ViewHolder(view);
     }
-
+    public void setData(List<CommentModel> commentList) {
+        this.commentList = commentList;
+        notifyDataSetChanged();
+    }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
@@ -56,4 +59,5 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
             body = itemView.findViewById(R.id.comment_text);
         }
     }
+
 }
