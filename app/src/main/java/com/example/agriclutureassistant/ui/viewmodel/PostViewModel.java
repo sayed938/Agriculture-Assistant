@@ -46,12 +46,9 @@ public class PostViewModel extends ViewModel {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         try {
-
-            observable.subscribe(o -> getAllPostsALiveData.setValue(o.posts));
+            compositeDisposable.add(observable.subscribe(o -> getAllPostsALiveData.setValue(o.posts)));
         }catch (Exception e){
             Log.d(TAG, "SHR: "+e.getMessage());
-
-            compositeDisposable.add(observable.subscribe(o -> getAllPostsALiveData.setValue(o.posts)));
         }
     }
 
