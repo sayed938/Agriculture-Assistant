@@ -53,15 +53,14 @@ public class SocialMedia extends AppCompatActivity {
 
     }
 
-    public void getAllPosts() {
+    private void getAllPosts() {
 
         postViewModel.getAllPosts();
         postViewModel.getGetAllPostsALiveData().observe(this, new Observer<List<PostModel>>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onChanged(List<PostModel> postModels) {
-                post_list = postModels;
-                recyclerView.setAdapter(new PostsAdapter(post_list));
+                recyclerView.setAdapter(new PostsAdapter(postModels));
                 //new PostsAdapter(post_list).notifyDataSetChanged();
             }
         });

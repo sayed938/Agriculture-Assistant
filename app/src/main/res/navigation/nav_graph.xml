@@ -39,5 +39,14 @@
             android:id="@+id/action_bookingComponent_to_hard_menu"
             app:destination="@id/hard_menu" />
     </fragment>
+    <fragment
+        android:id="@+id/bluetoothError"
+        android:name="com.example.agriclutureassistant.ui.fragments.BluetoothError"
+        android:label="Bluetooth_Error"
+        tools:layout="@layout/fragment_bluetooth_error" >
+        <action
+            android:id="@+id/action_bluetooth_error"
+            app:destination="@id/hard_menu" />
+    </fragment>
 
 </navigation>
