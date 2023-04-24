@@ -18,31 +18,32 @@ public class RemoteRequest {
     private static final String key = "polahany";
     private static SocialApiService apiService;
 
-    public RemoteRequest()
-    {
+    public RemoteRequest() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ProjectData.BaseUrlSocial)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
 
-        apiService= retrofit.create(SocialApiService.class);
+        apiService = retrofit.create(SocialApiService.class);
 
     }
-    public RemoteRequest getRequest()
-    {
-        if(INSTANCE == null)
+
+    public RemoteRequest getRequest() {
+        if (INSTANCE == null)
             INSTANCE = new RemoteRequest();
         return INSTANCE;
     }
 
-    public Observable<PostRoot> getAllPosts()
-    {
+    public Observable<PostRoot> getAllPosts() {
         return apiService.getAllPosts(key);
     }
-    public Observable<PostRoot> getComments(CommentModel commentModel){return apiService.getComments(commentModel);}
-    public Call<PostModel> addPost(PostModel postModel){
-        return apiService.setPost(postModel);
+
+    public Observable<PostRoot> getComments(CommentModel commentModel) {
+        return apiService.getComments(commentModel);
     }
 
+    public Call<PostModel> addPost(PostModel postModel) {
+        return apiService.setPost(postModel);
+    }
 }
