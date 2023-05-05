@@ -17,6 +17,13 @@
         android:theme="@style/Theme.AgriclutureAssistant"
         tools:targetApi="31">
         <activity
+            android:name=".ui.features_activities.PlantNameDetails"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".BluetoothError"
             android:exported="false">
             <meta-data
