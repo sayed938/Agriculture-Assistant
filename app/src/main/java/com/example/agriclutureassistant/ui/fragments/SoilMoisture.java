@@ -3,12 +3,14 @@ package com.example.agriclutureassistant.ui.fragments;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -23,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.agriclutureassistant.R;
+import com.google.common.base.CharMatcher;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,7 +37,6 @@ public class SoilMoisture extends Fragment {
     TextView isconnect, percent;
     OutputStream outputStream;
     InputStream inputStream = null;
-    ProgressBar bar;
     private Button booking_btn, open_water, close_water, reload_bt;
     private BluetoothSocket socket = null;
     static final java.util.UUID UUID = java.util.UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -49,6 +51,7 @@ public class SoilMoisture extends Fragment {
         close_water = view.findViewById(R.id.close_w);
         percent = view.findViewById(R.id.percentage);
         reload_bt = view.findViewById(R.id.bt_reload);
+
         return view;
     }
 
@@ -56,29 +59,27 @@ public class SoilMoisture extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         NavController navController = Navigation.findNavController(view);
         super.onViewCreated(view, savedInstanceState);
-        if (ActivityCompat.checkSelfPermission(view.getContext(), android.Manifest.permission.BLUETOOTH_ADVERTISE) != PackageManager.PERMISSION_GRANTED) {
-            try {
-                defineBluetooth();
-            } catch (Exception e) {
-                System.out.println("sssss");
-            }
+
+       /* if (ActivityCompat.checkSelfPermission(view.getContext(), android.Manifest.permission.BLUETOOTH_ADVERTISE) != PackageManager.PERMISSION_GRANTED) {
+
                 startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE), 1);
-        }
+        }*/
+
         try {
+            defineBluetooth();
             displayHumidity();
         } catch (Exception e) {
-            //Toast.makeText(getContext(), "Connection Error", Toast.LENGTH_SHORT).show();
-            isconnect.setText("Connection Error");
+            isconnect.setText("Check Connection !");
         }
-
         reload_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 try {
                     displayHumidity();
-                } catch (Exception e) {
-                    Toast.makeText(getContext(), "Connection Error", Toast.LENGTH_SHORT).show();
-
+                }
+                catch (Exception e){
+                    Toast.makeText(getContext(), "check connection please", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -87,19 +88,23 @@ public class SoilMoisture extends Fragment {
             public void onClick(View v) {
                 try {
                     openWater();
-                } catch (Exception e) {
-                    Toast.makeText(getContext(), "Connection Error", Toast.LENGTH_SHORT).show();
+                }
+                catch (Exception e){
+                    Toast.makeText(getContext(), "check connection please", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         close_water.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 try {
-                    closeWater();
-                } catch (Exception e) {
-                    Toast.makeText(getContext(), "Connection Error", Toast.LENGTH_SHORT).show();
+                   closeWater();
                 }
+                catch (Exception e){
+                    Toast.makeText(getContext(), "check connection please", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -127,7 +132,7 @@ public class SoilMoisture extends Fragment {
                 System.out.println("InError : " + e.getMessage());
             }
             cnt++;
-        } while (!socket.isConnected() && cnt < 5);
+        } while (!socket.isConnected() && cnt < 3);
     }
 
     private void displayHumidity() {

@@ -62,6 +62,7 @@
         app:layout_constraintVertical_bias="0.808">
 
         <androidx.cardview.widget.CardView
+
             style="@style/RippleDesign"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -85,6 +86,7 @@
                     >
 
                     <ImageView
+                        android:id="@+id/bt_cameraPlantName"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
