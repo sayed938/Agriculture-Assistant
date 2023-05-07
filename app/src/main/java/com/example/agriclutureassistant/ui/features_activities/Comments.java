@@ -146,7 +146,6 @@ public class Comments extends AppCompatActivity {
             public void onResponse(Call<AddComment> call, Response<AddComment> response) {
                 getAllComments();
             }
-
             @Override
             public void onFailure(Call<AddComment> call, Throwable t) {
 

@@ -9,11 +9,13 @@
     tools:context=".ui.features_activities.PlantNameDetails">
 
     <ImageView
+        android:id="@+id/plant_img"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
         android:src="@drawable/plant_head_demo2"/>
     <TextView
+        android:id="@+id/plant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/teal_700"
@@ -28,6 +30,7 @@
         android:layout_marginTop="10dp"
         android:background="#D3CBCB"/>
     <TextView
+        android:id="@+id/overview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -37,6 +40,7 @@
         android:layout_margin="10dp"/>
 
     <TextView
+        android:id="@+id/plant_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
