@@ -24,13 +24,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".BluetoothError"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".ui.features_activities.EditData"
             android:exported="false" />
         <activity
