@@ -7,19 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.agriclutureassistant.R;
-import com.example.agriclutureassistant.pojo.HomeFeaturesModel;
-import com.example.agriclutureassistant.ui.MainActivity;
+import com.example.agriclutureassistant.ui.pojo.HomeFeaturesModel;
 import com.example.agriclutureassistant.ui.features_activities.PlantDisease;
 import com.example.agriclutureassistant.ui.features_activities.PlantName;
 import com.example.agriclutureassistant.ui.features_activities.SocialMedia;
-import com.example.agriclutureassistant.ui.fragments.HomeFeatures;
 
 import java.util.ArrayList;
 

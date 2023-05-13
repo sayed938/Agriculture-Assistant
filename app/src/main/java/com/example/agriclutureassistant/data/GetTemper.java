@@ -1,11 +1,8 @@
 package com.example.agriclutureassistant.data;
 
-import com.example.agriclutureassistant.pojo.WeatherModel;
-
-import java.util.List;
+import com.example.agriclutureassistant.ui.pojo.WeatherModel;
 
 import io.reactivex.Observable;
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 

@@ -9,9 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agriclutureassistant.R;
-import com.example.agriclutureassistant.pojo.CommentModel;
+import com.example.agriclutureassistant.ui.pojo.CommentModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHolder> {

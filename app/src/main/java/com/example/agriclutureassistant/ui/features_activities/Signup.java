@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.agriclutureassistant.R;
-import com.example.agriclutureassistant.pojo.UserSignUpData;
+import com.example.agriclutureassistant.ui.pojo.UserSignUpData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
