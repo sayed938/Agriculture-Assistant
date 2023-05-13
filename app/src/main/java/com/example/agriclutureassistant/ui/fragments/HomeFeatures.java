@@ -18,8 +18,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.agriclutureassistant.R;
-import com.example.agriclutureassistant.pojo.HomeFeaturesModel;
-import com.example.agriclutureassistant.pojo.WeatherModel;
+import com.example.agriclutureassistant.ui.pojo.HomeFeaturesModel;
+import com.example.agriclutureassistant.ui.pojo.WeatherModel;
 import com.example.agriclutureassistant.ui.viewmodel.ViewModel;
 import com.example.agriclutureassistant.ui.adapters.HomeFeaturesAdapter;
 import com.google.firebase.auth.FirebaseAuth;

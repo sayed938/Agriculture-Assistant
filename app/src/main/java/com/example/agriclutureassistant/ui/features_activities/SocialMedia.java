@@ -8,13 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.agriclutureassistant.R;
-import com.example.agriclutureassistant.pojo.PostModel;
+import com.example.agriclutureassistant.ui.pojo.PostModel;
 import com.example.agriclutureassistant.ui.adapters.PostsAdapter;
 import com.example.agriclutureassistant.ui.viewmodel.PostViewModel;
 

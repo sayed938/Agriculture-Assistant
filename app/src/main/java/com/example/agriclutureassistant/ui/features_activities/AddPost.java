@@ -11,21 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.agriclutureassistant.R;
-import com.example.agriclutureassistant.data.SocialApiService;
-import com.example.agriclutureassistant.pojo.PostModel;
+import com.example.agriclutureassistant.ui.pojo.PostModel;
 import com.example.agriclutureassistant.ui.viewmodel.PostViewModel;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-
-import io.reactivex.Single;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class AddPost extends AppCompatActivity {
 

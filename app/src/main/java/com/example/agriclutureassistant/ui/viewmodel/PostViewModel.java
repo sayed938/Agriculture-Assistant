@@ -6,14 +6,13 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.agriclutureassistant.data.RemoteRequest;
-import com.example.agriclutureassistant.pojo.CommentModel;
-import com.example.agriclutureassistant.pojo.PostModel;
-import com.example.agriclutureassistant.pojo.PostRoot;
+import com.example.agriclutureassistant.ui.pojo.CommentModel;
+import com.example.agriclutureassistant.ui.pojo.PostModel;
+import com.example.agriclutureassistant.ui.pojo.PostRoot;
 
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;

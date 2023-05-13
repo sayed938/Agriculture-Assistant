@@ -7,7 +7,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.agriclutureassistant.ProjectData;
-import com.example.agriclutureassistant.pojo.UserSignUpData;
+import com.example.agriclutureassistant.ui.pojo.UserSignUpData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Context;

@@ -1,46 +1,44 @@
 package com.example.agriclutureassistant.ui.features_activities;
 
-import static android.content.ContentValues.TAG;
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.media.tv.TvContract;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.agriclutureassistant.R;
 import com.example.agriclutureassistant.data.RemoteRequestPlants;
-import com.example.agriclutureassistant.data.SocialApiService;
-import com.example.agriclutureassistant.pojo.PlantsTypes;
-import com.google.firebase.firestore.proto.TargetGlobal;
+import com.example.agriclutureassistant.ui.pojo.PlantsTypes;
 
-import java.net.URI;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PlantName extends AppCompatActivity {
     LinearLayout bt_camera, bt_gallery;
-    String name = "";
     ProgressBar bar;
+    List<MultipartBody.Part> parts = new ArrayList<>();
+    List<RequestBody> imageRequests = new ArrayList<>();
     private static final String TAG = "PlantName";
 
     @SuppressLint("MissingInflatedId")
@@ -72,32 +70,35 @@ public class PlantName extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == RESULT_OK) {
-            postPlantImage((Bitmap) data.getExtras().get("data"), null);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            Bitmap b = (Bitmap) data.getExtras().get("data");
+            b.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            byte[] byteArray = baos.toByteArray();
+            String path = MediaStore.Images.Media.insertImage(getContentResolver(), b, "Title", null);
+            Uri uri = Uri.parse(path);
+            String imagePath = getRealPathFromURI(uri);
+            imagePath(imagePath);
+            plantResponse((Bitmap) data.getExtras().get("data"), null);
 
         } else if (requestCode == 101 && resultCode == RESULT_OK) {
-            postPlantImage(null, data.getData());
+            String imagePath = getRealPathFromURI(data.getData());
+            imagePath(imagePath);
+            plantResponse(null, data.getData());
         }
     }
 
-    private void postPlantImage(Bitmap bitmap, Uri uri) {
-        HashMap<Object, Object> plant_map = new HashMap<>();
-        if (bitmap == null) {
-            plant_map.put("file", uri);
-        } else if (uri == null) {
-            plant_map.put("file", bitmap);
-        }
-        plantResponse(plant_map, bitmap, uri);
-    }
-
-    private void plantResponse(HashMap<Object, Object> plant_map, Bitmap cameraPhoto, Uri galleryPhoto) {
+    private void plantResponse(Bitmap cameraPhoto, Uri galleryPhoto) {
         bar.setVisibility(View.VISIBLE);
         RemoteRequestPlants requestPlants = new RemoteRequestPlants();
-        Call<PlantsTypes> callPlant = requestPlants.apiService().postPlant(plant_map);
-        callPlant.enqueue(new Callback<PlantsTypes>() {
+        Call<PlantsTypes.Root> callPlant = requestPlants.apiService().postPlant(parts, "2b10nmypxhmUxa1oSXvmsLKQpu");
+        callPlant.enqueue(new Callback<PlantsTypes.Root>() {
             @Override
-            public void onResponse(Call<PlantsTypes> call, Response<PlantsTypes> response) {
+            public void onResponse(Call<PlantsTypes.Root> call, Response<PlantsTypes.Root> response) {
                 try {
-                    name = response.body().data;
+                    parts.remove(0);
+                    imageRequests.remove(0);
+                    String name = "";
+                    name = response.body().results.get(0).species.commonNames.get(0);
                     Intent intent = new Intent(getApplication(), PlantNameDetails.class);
                     if (galleryPhoto == null) {
                         intent.putExtra("plant", cameraPhoto);
@@ -109,6 +110,7 @@ public class PlantName extends AppCompatActivity {
                     intent.putExtra("overview", "");
                     bar.setVisibility(View.INVISIBLE);
                     startActivity(intent);
+
                 } catch (Exception e) {
                     Log.d(TAG, e.getMessage());
                     bar.setVisibility(View.INVISIBLE);
@@ -117,15 +119,35 @@ public class PlantName extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<PlantsTypes> call, Throwable t) {
+            public void onFailure(Call<PlantsTypes.Root> call, Throwable t) {
+                System.out.println("On Failure ya 3m");
                 Log.d(TAG, t.getMessage());
                 bar.setVisibility(View.INVISIBLE);
                 Toast.makeText(PlantName.this, "Try again ", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
+    private void imagePath(String imagePath) {
+        File image = new File(imagePath);
+        RequestBody request = RequestBody.create(MediaType.parse("image/*"), image);
+        imageRequests.add(request);
+
+        for (int i = 0; i < imageRequests.size(); i++) {
+            MultipartBody.Part part = MultipartBody.Part.createFormData("images", image.getName() + i, imageRequests.get(i));
+            parts.add(part);
+        }
+    }
+
+    public String getRealPathFromURI(Uri uri) {
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String path = cursor.getString(column_index);
+        cursor.close();
+        return path;
+    }
 
 }
 

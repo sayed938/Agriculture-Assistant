@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RemoteRequestPlants {
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://talabaklebanon.000webhostapp.com/")
+            .baseUrl("https://my-api.plantnet.org")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 

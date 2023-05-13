@@ -1,12 +1,11 @@
 package com.example.agriclutureassistant.data;
 
 import com.example.agriclutureassistant.ProjectData;
-import com.example.agriclutureassistant.pojo.CommentModel;
-import com.example.agriclutureassistant.pojo.PostModel;
-import com.example.agriclutureassistant.pojo.PostRoot;
+import com.example.agriclutureassistant.ui.pojo.CommentModel;
+import com.example.agriclutureassistant.ui.pojo.PostModel;
+import com.example.agriclutureassistant.ui.pojo.PostRoot;
 
 import io.reactivex.Observable;
-import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

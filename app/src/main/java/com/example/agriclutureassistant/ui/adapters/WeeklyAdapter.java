@@ -1,6 +1,5 @@
 package com.example.agriclutureassistant.ui.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agriclutureassistant.R;
-import com.example.agriclutureassistant.pojo.WeatherModel;
+import com.example.agriclutureassistant.ui.pojo.WeatherModel;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;

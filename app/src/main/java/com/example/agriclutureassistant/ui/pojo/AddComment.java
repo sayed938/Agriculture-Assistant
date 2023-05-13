@@ -1,4 +1,4 @@
-package com.example.agriclutureassistant.pojo;
+package com.example.agriclutureassistant.ui.pojo;
 
 public class AddComment {
     String user_name;

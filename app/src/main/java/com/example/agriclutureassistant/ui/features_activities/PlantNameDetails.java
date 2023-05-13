@@ -32,6 +32,7 @@ public class PlantNameDetails extends AppCompatActivity {
         plantDetails=findViewById(R.id.plant_details);
         overview=findViewById(R.id.overview);
         plant=findViewById(R.id.plant);
+        plant.setText(getIntent().getExtras().getString("plant_nameC"));
         getIntentPlant();
     }
 

@@ -9,7 +9,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.agriclutureassistant.data.WeatherBuilder;
-import com.example.agriclutureassistant.pojo.WeatherModel;
+import com.example.agriclutureassistant.ui.pojo.WeatherModel;
 
 import java.util.List;
 

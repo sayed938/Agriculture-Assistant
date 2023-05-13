@@ -1,5 +1,5 @@
 
-package com.example.agriclutureassistant.pojo;
+package com.example.agriclutureassistant.ui.pojo;
 
 import java.util.ArrayList;
 

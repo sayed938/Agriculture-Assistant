@@ -8,21 +8,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.agriclutureassistant.R;
 import com.example.agriclutureassistant.data.SocialApiService;
-import com.example.agriclutureassistant.pojo.AddComment;
-import com.example.agriclutureassistant.pojo.CommentModel;
-import com.example.agriclutureassistant.pojo.PostModel;
+import com.example.agriclutureassistant.ui.pojo.AddComment;
+import com.example.agriclutureassistant.ui.pojo.CommentModel;
 import com.example.agriclutureassistant.ui.adapters.CommentAdapter;
 import com.example.agriclutureassistant.ui.viewmodel.PostViewModel;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
