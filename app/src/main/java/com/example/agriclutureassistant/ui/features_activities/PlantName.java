@@ -72,8 +72,7 @@ public class PlantName extends AppCompatActivity {
         if (requestCode == 100 && resultCode == RESULT_OK) {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             Bitmap b = (Bitmap) data.getExtras().get("data");
-            b.compress(Bitmap.CompressFormat.PNG, 100, baos);
-            byte[] byteArray = baos.toByteArray();
+            b.compress(Bitmap.CompressFormat.JPEG, 100, baos);
             String path = MediaStore.Images.Media.insertImage(getContentResolver(), b, "Title", null);
             Uri uri = Uri.parse(path);
             String imagePath = getRealPathFromURI(uri);
@@ -118,7 +117,8 @@ public class PlantName extends AppCompatActivity {
     }
 
     private void imagePath(String imagePath) {
-        parts.remove(0);
+        if(parts.size()>0)
+           parts.remove(0);
         File image = new File(imagePath);
         RequestBody request = RequestBody.create(MediaType.parse("image/*"), image);
         imageRequests.add(request);
