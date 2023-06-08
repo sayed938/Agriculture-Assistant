@@ -99,17 +99,7 @@ public class PlantName extends AppCompatActivity {
                     imageRequests.remove(0);
                     String name = "";
                     name = response.body().results.get(0).species.commonNames.get(0);
-                    Intent intent = new Intent(getApplication(), PlantNameDetails.class);
-                    if (galleryPhoto == null) {
-                        intent.putExtra("plant", cameraPhoto);
-                    } else if (cameraPhoto == null) {
-                        intent.putExtra("plant_gallery", galleryPhoto);
-                    }
-                    intent.putExtra("plant_nameC", name);
-                    intent.putExtra("plant_details", "");
-                    intent.putExtra("overview", "");
-                    bar.setVisibility(View.INVISIBLE);
-                    startActivity(intent);
+                    responseIntent(cameraPhoto, galleryPhoto, name);
 
                 } catch (Exception e) {
                     Log.d(TAG, e.getMessage());
@@ -120,15 +110,15 @@ public class PlantName extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<PlantsTypes.Root> call, Throwable t) {
-                System.out.println("On Failure ya 3m");
                 Log.d(TAG, t.getMessage());
                 bar.setVisibility(View.INVISIBLE);
-                Toast.makeText(PlantName.this, "Try again ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PlantName.this, "Try again ! Connection error ", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void imagePath(String imagePath) {
+        parts.remove(0);
         File image = new File(imagePath);
         RequestBody request = RequestBody.create(MediaType.parse("image/*"), image);
         imageRequests.add(request);
@@ -149,7 +139,17 @@ public class PlantName extends AppCompatActivity {
         return path;
     }
 
+    private void responseIntent(Bitmap cameraPhoto, Uri galleryPhoto, String name) {
+        Intent intent = new Intent(getApplication(), PlantNameDetails.class);
+        if (galleryPhoto == null) {
+            intent.putExtra("plant", cameraPhoto);
+        } else if (cameraPhoto == null) {
+            intent.putExtra("plant_gallery", galleryPhoto);
+        }
+        intent.putExtra("plant_nameC", name);
+        intent.putExtra("plant_details", "");
+        intent.putExtra("overview", "");
+        bar.setVisibility(View.INVISIBLE);
+        startActivity(intent);
+    }
 }
-
-
-

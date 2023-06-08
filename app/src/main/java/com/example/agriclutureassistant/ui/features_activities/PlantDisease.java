@@ -19,8 +19,12 @@ import com.example.agriclutureassistant.R;
 import com.example.agriclutureassistant.data.RemoteRequestPlants;
 import com.example.agriclutureassistant.ui.pojo.PlantsDiseases;
 
+import java.io.File;
 import java.util.HashMap;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,6 +33,7 @@ public class PlantDisease extends AppCompatActivity {
     private LinearLayout bt_cameraDisease, bt_galleryDisease;
     String name, disease;
     ProgressBar bar;
+    MultipartBody.Part part;
 
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
@@ -59,26 +64,21 @@ public class PlantDisease extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == RESULT_OK) {
-            postPlantImage((Bitmap) data.getExtras().get("data"), null);
+
         } else if (requestCode == 101 && resultCode == RESULT_OK) {
-            postPlantImage(null, data.getData());
+            String imagePath = new PlantName().getRealPathFromURI(data.getData());
+            File image = new File(imagePath);
+            RequestBody request = RequestBody.create(MediaType.parse("image/*"), image);
+            part = MultipartBody.Part.createFormData("images", image.getName() + request);
+            plantResponse(null, data.getData());
         }
     }
 
-    private void postPlantImage(Bitmap bitmap, Uri uri) {
-        HashMap<Object, Object> plant_map = new HashMap<>();
-        if (bitmap == null) {
-            plant_map.put("file", uri);
-        } else if (uri == null) {
-            plant_map.put("file", bitmap);
-        }
-        plantResponse(plant_map, bitmap, uri);
-    }
 
-    private void plantResponse(HashMap<Object, Object> plant_map, Bitmap cameraPhoto, Uri galleryPhoto) {
+    private void plantResponse(Bitmap cameraPhoto, Uri galleryPhoto) {
         bar.setVisibility(View.VISIBLE);
         RemoteRequestPlants requestPlants = new RemoteRequestPlants();
-        Call<PlantsDiseases> callPlant = requestPlants.apiService().postPlantDisease(plant_map);
+        Call<PlantsDiseases> callPlant = requestPlants.apiService().postPlantDisease(part);
         callPlant.enqueue(new Callback<PlantsDiseases>() {
             @Override
             public void onResponse(Call<PlantsDiseases> call, Response<PlantsDiseases> response) {
@@ -86,17 +86,7 @@ public class PlantDisease extends AppCompatActivity {
                 try {
                     name = response.body().name;
                     disease = response.body().date;
-                    Intent intent = new Intent(getApplication(), PlantNameDetails.class);
-                    if (cameraPhoto == null) {
-                        intent.putExtra("plant_gallery", galleryPhoto);
-                    } else if (galleryPhoto == null) {
-                        intent.putExtra("plant", cameraPhoto);
-                    }
-                    intent.putExtra("plant_nameC", name);
-                    intent.putExtra("plant_details", disease);
-                    intent.putExtra("overview", "Overview");
-                    bar.setVisibility(View.INVISIBLE);
-                    startActivity(intent);
+                    responseIntent(cameraPhoto,galleryPhoto,name,disease);
                 } catch (Exception e) {
                     Log.d("PlantDisease", e.getMessage());
                     bar.setVisibility(View.INVISIBLE);
@@ -108,9 +98,22 @@ public class PlantDisease extends AppCompatActivity {
             public void onFailure(Call<PlantsDiseases> call, Throwable t) {
                 Log.d("PlantDisease", t.getMessage());
                 bar.setVisibility(View.INVISIBLE);
-                Toast.makeText(PlantDisease.this, "Try again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PlantDisease.this, "Try again ! Connection error", Toast.LENGTH_SHORT).show();
             }
         });
 
+    }
+    private void responseIntent(Bitmap cameraPhoto, Uri galleryPhoto, String name,String overView) {
+        Intent intent = new Intent(getApplication(), PlantNameDetails.class);
+        if (galleryPhoto == null) {
+            intent.putExtra("plant", cameraPhoto);
+        } else if (cameraPhoto == null) {
+            intent.putExtra("plant_gallery", galleryPhoto);
+        }
+        intent.putExtra("plant_nameC", name);
+        intent.putExtra("plant_details", "");
+        intent.putExtra("overview", overView);
+        bar.setVisibility(View.INVISIBLE);
+        startActivity(intent);
     }
 }

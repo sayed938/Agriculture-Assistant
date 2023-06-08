@@ -21,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomview;
     NavHostFragment navHostFragment;
     public Context context;
-    private UserSignUpData userSignUpData;
-    //*******//
 
     SharedPreferences sharedPreferences;
 
