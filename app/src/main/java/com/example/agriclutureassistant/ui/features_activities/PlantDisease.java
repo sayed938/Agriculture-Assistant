@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -19,7 +21,9 @@ import com.example.agriclutureassistant.R;
 import com.example.agriclutureassistant.data.RemoteRequestPlants;
 import com.example.agriclutureassistant.ui.pojo.PlantsDiseases;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 
 import okhttp3.MediaType;
@@ -64,12 +68,14 @@ public class PlantDisease extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == RESULT_OK) {
-            Toast.makeText(this, "jjjjjj", Toast.LENGTH_SHORT).show();
+            Bitmap b = (Bitmap) data.getExtras().get("data");
+            imagePath(b);
+            plantResponse((Bitmap) data.getExtras().get("data"), null);
         } else if (requestCode == 101 && resultCode == RESULT_OK) {
-            String imagePath = new PlantName().getRealPathFromURI(data.getData());
+            String imagePath = getRealPathFromURI(data.getData());
             File image = new File(imagePath);
             RequestBody request = RequestBody.create(MediaType.parse("image/*"), image);
-            part = MultipartBody.Part.createFormData("images", image.getName() + request);
+            part = MultipartBody.Part.createFormData("file", image.getName(), request);
             plantResponse(null, data.getData());
         }
     }
@@ -86,9 +92,9 @@ public class PlantDisease extends AppCompatActivity {
                 try {
                     name = response.body().name;
                     disease = response.body().date;
-                    responseIntent(cameraPhoto,galleryPhoto,name,disease);
+                    responseIntent(cameraPhoto, galleryPhoto, name, disease);
                 } catch (Exception e) {
-                    Log.d("PlantDisease", e.getMessage());
+                    Log.d("PlantDisease", e.getMessage() + " OnResponse");
                     bar.setVisibility(View.INVISIBLE);
                     Toast.makeText(PlantDisease.this, "Try again", Toast.LENGTH_SHORT).show();
                 }
@@ -103,7 +109,8 @@ public class PlantDisease extends AppCompatActivity {
         });
 
     }
-    private void responseIntent(Bitmap cameraPhoto, Uri galleryPhoto, String name,String overView) {
+
+    private void responseIntent(Bitmap cameraPhoto, Uri galleryPhoto, String name, String overView) {
         Intent intent = new Intent(getApplication(), PlantNameDetails.class);
         if (galleryPhoto == null) {
             intent.putExtra("plant", cameraPhoto);
@@ -111,9 +118,29 @@ public class PlantDisease extends AppCompatActivity {
             intent.putExtra("plant_gallery", galleryPhoto);
         }
         intent.putExtra("plant_nameC", name);
-        intent.putExtra("plant_details", "");
-        intent.putExtra("overview", overView);
+        intent.putExtra("plant_details", overView);
+        intent.putExtra("overview", "Overview");
         bar.setVisibility(View.INVISIBLE);
         startActivity(intent);
+    }
+
+    public String getRealPathFromURI(Uri uri) {
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String path = cursor.getString(column_index);
+        cursor.close();
+        return path;
+    }
+    private void imagePath(Bitmap b) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        b.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        String path = MediaStore.Images.Media.insertImage(getContentResolver(), b, "Title", null);
+        Uri uri = Uri.parse(path);
+        String imagePath1 = getRealPathFromURI(uri);
+        File image = new File(imagePath1);
+        RequestBody request = RequestBody.create(MediaType.parse("image/*"), image);
+        part = MultipartBody.Part.createFormData("file", image.getName(), request);
     }
 }
