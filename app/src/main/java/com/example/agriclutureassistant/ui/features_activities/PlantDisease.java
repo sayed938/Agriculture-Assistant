@@ -64,7 +64,7 @@ public class PlantDisease extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == RESULT_OK) {
-
+            Toast.makeText(this, "jjjjjj", Toast.LENGTH_SHORT).show();
         } else if (requestCode == 101 && resultCode == RESULT_OK) {
             String imagePath = new PlantName().getRealPathFromURI(data.getData());
             File image = new File(imagePath);
@@ -78,7 +78,7 @@ public class PlantDisease extends AppCompatActivity {
     private void plantResponse(Bitmap cameraPhoto, Uri galleryPhoto) {
         bar.setVisibility(View.VISIBLE);
         RemoteRequestPlants requestPlants = new RemoteRequestPlants();
-        Call<PlantsDiseases> callPlant = requestPlants.apiService().postPlantDisease(part);
+        Call<PlantsDiseases> callPlant = requestPlants.apiService1().postPlantDisease(part);
         callPlant.enqueue(new Callback<PlantsDiseases>() {
             @Override
             public void onResponse(Call<PlantsDiseases> call, Response<PlantsDiseases> response) {
