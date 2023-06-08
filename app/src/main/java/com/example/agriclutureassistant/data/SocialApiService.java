@@ -40,7 +40,7 @@ public interface SocialApiService {
     @Multipart
     @POST("/v2/identify/all")
     Call<PlantsTypes.Root> postPlant(@Part List<MultipartBody.Part> images,@Query("api-key") String api_key);
-
+    @Multipart
     @POST("plant_disease.php")
-    Call<PlantsDiseases> postPlantDisease(@Body HashMap<Object, Object> plant_map);
+    Call<PlantsDiseases> postPlantDisease(@Part MultipartBody.Part plant_map);
 }
