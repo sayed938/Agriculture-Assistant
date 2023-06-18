@@ -84,10 +84,7 @@ public class BookingComponent extends Fragment {
     }
 
     public void setDataInCollection(String name, String address, String phone) {
-
-
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-
         firebaseFirestore.collection("bookData")
                 .document(FirebaseAuth.getInstance().getUid())
                 .set(new BookUserData(name, phone, address))
@@ -104,4 +101,5 @@ public class BookingComponent extends Fragment {
                     }
                 });
     }
+
 }

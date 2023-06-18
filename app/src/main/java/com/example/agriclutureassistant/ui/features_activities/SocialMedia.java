@@ -59,7 +59,6 @@ public class SocialMedia extends AppCompatActivity {
             @Override
             public void onChanged(List<PostModel> postModels) {
                 recyclerView.setAdapter(new PostsAdapter(postModels));
-                //new PostsAdapter(post_list).notifyDataSetChanged();
             }
         });
     }

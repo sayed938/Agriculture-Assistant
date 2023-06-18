@@ -1,6 +1,8 @@
 package com.example.agriclutureassistant.ui.fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -70,18 +72,11 @@ public class Settings extends Fragment {
         sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                sharedPreferences = getActivity().getSharedPreferences(ProjectData.filename, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.clear();
-                editor.apply();
-                getActivity().onBackPressed();
-                startActivity(new Intent(requireActivity(), Sign_in.class));
-                requireActivity().finish();
+                showSignOutAlertDialog();
             }
 
         });
+
 
         settingUserData();
     }
@@ -101,5 +96,32 @@ public class Settings extends Fragment {
                 txt_pass.setText(value.getString("password"));
             }
         });
+    }
+
+
+
+    public void showSignOutAlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+        builder.setTitle("Sign out");
+        builder.setMessage("Do you want sign out?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                sharedPreferences = getActivity().getSharedPreferences(ProjectData.filename, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.apply();
+                getActivity().onBackPressed();
+                startActivity(new Intent(requireActivity(), Sign_in.class));
+                requireActivity().finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                builder.create().hide();
+            }
+        });
+        builder.create().show();
     }
 }

@@ -122,7 +122,6 @@ public class Sign_in extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         progressDialog.cancel();
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-
                     }
                 });
     }

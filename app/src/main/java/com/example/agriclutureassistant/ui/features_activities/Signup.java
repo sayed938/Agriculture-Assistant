@@ -109,7 +109,6 @@ public class Signup extends AppCompatActivity {
     }
 
     private void registerUser(String email, String password, String name, String mobile) {
-
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
         progressDialog.show();
@@ -117,13 +116,11 @@ public class Signup extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-
                         progressDialog.cancel();
                         sendEmailVerification();
-
                         firebaseFirestore.collection("Users")
                                 .document(FirebaseAuth.getInstance().getUid())
-                                .set(new UserSignUpData(name, mobile, email,password));
+                                .set(new UserSignUpData(name, mobile, email, password));
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -133,7 +130,6 @@ public class Signup extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
     }
 
     private void sendEmailVerification() {
