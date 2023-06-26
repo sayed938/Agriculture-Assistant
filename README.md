@@ -22,5 +22,5 @@
 - The user can upload a post inquiring about anything related to agriculture, whether specific fertilizers, irrigation methods, or the like.
 - Any other user can also respond to it through a comment to answer his question.
 <img src="https://github.com/ShadyRamadan888/AgriclutureAssistant/assets/89228710/675d8641-104b-4b03-8ffe-623ba8bd6428" width="240" height="440" />
-<img src="https://github.com/ShadyRamadan888/AgriclutureAssistant/assets/89228710/23077509-e476-4dd5-8649-3252e3c51bcd" width="240" height="440" />
+<img src="https://github.com/ShadyRamadan888/AgriclutureAssistant/assets/89228710/4ca50983-ab26-40ca-a5b7-93a6eade60d0" width="240" height="440" />
 
