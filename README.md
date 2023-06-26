@@ -10,5 +10,5 @@
 # Plant Name Detection
 - You can identify the name of a particular plant by taking a picture of it or choosing a picture from the gallery.
 - This happens by sending the image to the backend and waiting for a response, as the image is recognized by the ML model.
-![photo_5818738757258558942_y_google-pixel5-justblack-portrait](https://github.com/ShadyRamadan888/AgriclutureAssistant/assets/89228710/2ae8b976-e0b8-440d-b202-92271040459e width="200" height="200")
+<img src="https://github.com/ShadyRamadan888/AgriclutureAssistant/assets/89228710/2ae8b976-e0b8-440d-b202-92271040459e" width="200" height="200" />
  
