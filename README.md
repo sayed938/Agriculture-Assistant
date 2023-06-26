@@ -28,7 +28,7 @@
 # Irrigation system
 - We can control the irrigation of the soil through the application, as the application controls the opening and closing of the hardware component (Using bluetooth).
 <img src="https://github.com/ShadyRamadan888/AgriclutureAssistant/assets/89228710/476ada84-0ff0-428d-a066-82147c337eec" width="240" height="440" />
-
+# Video
 https://github.com/ShadyRamadan888/AgriclutureAssistant/assets/89228710/93292a12-0e5a-46f9-9596-f7f82ad112c2
 
 
