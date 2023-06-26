@@ -24,3 +24,8 @@
 <img src="https://github.com/ShadyRamadan888/AgriclutureAssistant/assets/89228710/675d8641-104b-4b03-8ffe-623ba8bd6428" width="240" height="440" />
 <img src="https://github.com/ShadyRamadan888/AgriclutureAssistant/assets/89228710/4ca50983-ab26-40ca-a5b7-93a6eade60d0" width="240" height="440" />
 
+# Irrigation system
+- We can control the irrigation of the soil through the application, as the application controls the opening and closing of the hardware component (Using bluetooth).
+<img src="https://github.com/ShadyRamadan888/AgriclutureAssistant/assets/89228710/476ada84-0ff0-428d-a066-82147c337eec" width="240" height="440" />
+[![Watch the video](https://img.youtube.com/vi/T-D1KVIuvjA/maxresdefault.jpg)](https://youtube.com/shorts/fpqYkAHtnUk)
+
