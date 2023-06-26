@@ -1,3 +1,5 @@
+
+https://github.com/ShadyRamadan888/AgriclutureAssistant/assets/89228710/93292a12-0e5a-46f9-9596-f7f82ad112c2
 # AgriclutureAssistant
 ## General Screens
 ![Grad1](https://github.com/ShadyRamadan888/AgriclutureAssistant/assets/89228710/8c243165-3043-4bb8-ae1c-806e878c8284)
@@ -27,5 +29,9 @@
 # Irrigation system
 - We can control the irrigation of the soil through the application, as the application controls the opening and closing of the hardware component (Using bluetooth).
 <img src="https://github.com/ShadyRamadan888/AgriclutureAssistant/assets/89228710/476ada84-0ff0-428d-a066-82147c337eec" width="240" height="440" />
-[![Watch the video](https://img.youtube.com/vi/T-D1KVIuvjA/maxresdefault.jpg)](https://youtube.com/shorts/fpqYkAHtnUk)
+
+
+
+https://github.com/ShadyRamadan888/AgriclutureAssistant/assets/89228710/94242383-1646-4358-87d9-884251a9521a
+
 
