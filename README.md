@@ -12,6 +12,7 @@
 - This happens by sending the image to the backend and waiting for a response, as the image is recognized by the ML model.
 <img src="https://github.com/ShadyRamadan888/AgriclutureAssistant/assets/89228710/2ae8b976-e0b8-440d-b202-92271040459e" width="240" height="440" />
 <img src="https://github.com/ShadyRamadan888/AgriclutureAssistant/assets/89228710/23077509-e476-4dd5-8649-3252e3c51bcd" width="240" height="440" />
+
 # Plant Desease Detection
 - You can identify the desease of a particular plant by taking a picture of it or choosing a picture from the gallery.
 - This happens by sending the image to the backend and waiting for a response, as the image is recognized by the ML model.
